@@ -4,7 +4,7 @@
 
 **How does the diameter of a tree constrain the length of an isolation game?** For a proposed ceiling bound, the answer turns on the passage from diameter 9 to diameter 10.
 
-[**Read the paper (PDF)**](manuscript/Isolation_Game_Research_Report.pdf) · [**Explore the Lean sources and builds**](formal/README.md) · [**Play online**](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html)
+[**Read the paper (PDF)**](manuscript/Isolation_Game_Research_Report.pdf) · [**Explore the Lean sources and builds**](formal/README.md) · [**Play online**](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=en)
 
 ## Abstract
 
@@ -38,7 +38,7 @@ Together, the two results show that **10 is the first diameter at which the roun
 |---|---|
 | **Read the proofs** | [Full paper](manuscript/Isolation_Game_Research_Report.pdf) · [Proof map and D9 example](EVIDENCE_MAP.md) · [References and theorem scope](manuscript/SOURCES.md) |
 | **Inspect formal verification** | [Lean sources and build instructions for D6, D7, D9 and D10](formal/README.md) |
-| **Try the examples** | [Online board](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [Zoomable D10 construction](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html) · [Board instructions](demo/README.md) |
+| **Try the examples** | [Online board](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=en) · [Zoomable D10 construction](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html?lang=en) · [Board instructions](demo/README.md) |
 | **Reproduce checks** | [Python examples, finite certificates and reproduction guide](REPRODUCE.md) |
 | **Follow the research** | [How AI worked through failed openings, counterexamples and proof revisions](RESEARCH.md) |
 

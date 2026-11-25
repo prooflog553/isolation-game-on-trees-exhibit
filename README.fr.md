@@ -4,7 +4,7 @@
 
 **Comment le diamètre d’un arbre influence-t-il la durée du jeu d’isolement ?** Pour la borne arrondie à l’entier supérieur étudiée ici, le changement décisif se situe entre les diamètres 9 et 10.
 
-[Article (PDF, anglais)](manuscript/Isolation_Game_Research_Report.pdf) · [Sources et compilation Lean (anglais)](formal/README.md) · [Plateau interactif (anglais/chinois)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html)
+[Article (PDF, anglais)](manuscript/Isolation_Game_Research_Report.pdf) · [Sources et compilation Lean (anglais)](formal/README.md) · [Plateau interactif](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=fr)
 
 ## Résumé
 
@@ -47,7 +47,7 @@ Pour D9, un contre-exemple sur des forêts prémarquées a écarté la règle g�
 
 - [Article complet (PDF, anglais)](manuscript/Isolation_Game_Research_Report.pdf) · [Carte des preuves (anglais)](EVIDENCE_MAP.md)
 - [Histoire de la recherche (anglais)](RESEARCH.md) · [Guide de reproduction (anglais)](REPRODUCE.md) · [Sources et compilation Lean (anglais)](formal/README.md)
-- [Plateau interactif (anglais/chinois)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [Construction D10 (anglais/chinois)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+- [Plateau interactif](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=fr) · [Construction D10](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html?lang=fr)
 - [Mode d’emploi du plateau (français)](demo/README.fr.md)
 - [Licences et mentions (anglais)](LICENSE_SCOPE.md)
 

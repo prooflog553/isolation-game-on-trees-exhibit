@@ -4,7 +4,7 @@
 
 **一棵树有多“长”，会怎样影响一场隔离博弈的手数？** 对这里研究的上取整界，答案恰好藏在直径 9 与 10 之间。
 
-[**阅读论文 PDF**](manuscript/Isolation_Game_Research_Report.pdf) · [**查看 Lean 源码与构建**](formal/README.zh-Hans.md) · [**在线体验**](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html)
+[**阅读论文 PDF**](manuscript/Isolation_Game_Research_Report.pdf) · [**查看 Lean 源码与构建**](formal/README.zh-Hans.md) · [**在线体验**](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=zh)
 
 ## 摘要
 
@@ -38,7 +38,7 @@
 |---|---|
 | **阅读证明** | [论文全文](manuscript/Isolation_Game_Research_Report.pdf) · [证明导航与 D9 实例](EVIDENCE_MAP.zh-Hans.md) · [文献和定理对照](manuscript/SOURCES.zh-Hans.md) |
 | **检查形式化结果** | [D6、D7、D9、D10 的 Lean 源码与构建说明](formal/README.zh-Hans.md) |
-| **尝试例子** | [在线棋盘](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [可缩放的 D10 构造](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html) · [棋盘使用说明](demo/README.zh-Hans.md) |
+| **尝试例子** | [在线棋盘](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=zh) · [可缩放的 D10 构造](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html?lang=zh) · [棋盘使用说明](demo/README.zh-Hans.md) |
 | **独立复算** | [Python 案例、有限证书和复现步骤](REPRODUCE.zh-Hans.md) |
 | **了解研究过程** | [AI 如何解题：失败的开局、反例与证明修订](RESEARCH.zh-Hans.md) |
 

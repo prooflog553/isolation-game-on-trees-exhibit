@@ -84,6 +84,40 @@
     details { margin-top: .9rem; color: var(--muted); font-size: .9rem; }
     summary { width: fit-content; color: var(--ink); font-weight: 650; }
     details p { margin-top: .5rem; }
+
+    body { background: #f3f2e9; }
+    main { max-width: 82rem; }
+    .header { align-items: end; padding-bottom: 1.4rem; border-bottom: 1px solid var(--line); }
+    .eyebrow { color: #9a4a2c; text-transform: uppercase; font-size: .76rem; font-weight: 750; letter-spacing: .13em; margin-bottom: .45rem; }
+    .intro { max-width: 42rem; font-size: 1.06rem; }
+    .language { background: #fffefa; border: 1px solid var(--line); padding: .55rem .7rem; border-radius: .65rem; }
+    .guide { margin: 1.4rem 0; }
+    .guide-head { display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap; }
+    .guide h2 { font: 600 clamp(1.3rem,2.5vw,1.7rem)/1.2 Georgia, serif; }
+    .guide-head p { color: var(--muted); font-size: .91rem; }
+    .steps { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .7rem; margin-top: .85rem; }
+    .step { background: #fffefa; border: 1px solid var(--line); border-radius: .7rem; padding: 1rem; }
+    .step b { display: block; color: var(--green); font-size: .98rem; }
+    .step b::before { content: attr(data-number); display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: #dceade; margin-right: .5rem; font-size: .82rem; }
+    .step p { color: var(--muted); font-size: .9rem; margin-top: .5rem; }
+    .example { margin-top: .7rem; display: grid; grid-template-columns: auto 1fr; gap: .8rem 1.2rem; align-items: center; background: #e7eee2; border-radius: .7rem; padding: .9rem 1rem; }
+    .example strong { display: block; color: var(--green); }
+    .example p { margin: .2rem 0 0; color: var(--muted); font-size: .9rem; }
+    .path-illustration { display: flex; align-items: center; color: #637c6c; white-space: nowrap; }
+    .path-illustration i { width: .8rem; height: 2px; background: #829888; }
+    .path-illustration i.live { height: 3px; background: #b44c2e; }
+    .path-illustration span { display: grid; place-items: center; width: 1.7rem; height: 1.7rem; background: #fffefa; border: 1.5px solid var(--green); border-radius: 50%; font-size: .76rem; font-weight: 700; }
+    .path-illustration span.mark { background: #cddfcb; }
+    .settings { padding-top: .1rem; }
+    .board-heading { display: flex; justify-content: space-between; align-items: baseline; gap: .8rem; flex-wrap: wrap; margin-bottom: .35rem; }
+    .board-heading h2 { font-size: 1.15rem; }
+    .board-heading p { color: var(--muted); font-size: .86rem; }
+    .aside { border-top: 4px solid #346b57; }
+    .aside > h2 { font-size: 1.05rem; }
+    .aside > p { color: var(--muted); font-size: .88rem; margin-top: .3rem; }
+    .project-nav { display:flex; gap: 1rem; flex-wrap:wrap; margin-top: 1.4rem; font-size:.9rem; }
+    a { color: #145641; text-underline-offset: .2em; }
+    @media (max-width: 40rem) { .steps { grid-template-columns: 1fr; } .example { grid-template-columns: 1fr; } .path-illustration { justify-content: center; } .settings label { max-width: 100%; } .settings select { max-width: 100%; min-width: 0; } #board circle { r: 21px; } #board text { font-size: 22px; } }
     @media (max-width: 51rem) { .workspace { grid-template-columns: minmax(0, 1fr); } }
   </style>
 </head>
@@ -91,16 +125,30 @@
 <main>
   <header class="header">
     <div>
+      <p class="eyebrow" data-copy="eyebrow"></p>
       <h1 data-copy="title">树上的隔离博弈</h1>
       <p class="intro" data-copy="intro"></p>
     </div>
-    <label lang="en">中文 / English
-      <select id="language" aria-label="语言 / Language">
+    <label class="language"><span aria-hidden="true">🌐</span> <span data-copy="language"></span>
+      <select id="language">
         <option value="zh" lang="zh-Hans">简体中文</option>
         <option value="en">English</option>
+        <option value="ja" lang="ja">日本語</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="pt" lang="pt">Português</option>
       </select>
     </label>
   </header>
+  <section class="guide" aria-labelledby="guide-title">
+    <div class="guide-head"><h2 id="guide-title" data-copy="guideTitle"></h2><p data-copy="guideLead"></p></div>
+    <div class="steps">
+      <article class="step"><b data-number="1" data-copy="step1Title"></b><p data-copy="step1"></p></article>
+      <article class="step"><b data-number="2" data-copy="step2Title"></b><p data-copy="step2"></p></article>
+      <article class="step"><b data-number="3" data-copy="step3Title"></b><p data-copy="step3"></p></article>
+    </div>
+    <div class="example">
+      <div class="path-illustration" aria-hidden="true"><span class="mark">1</span><i></i><span class="mark">2</span><i></i><span class="mark">3</span><i></i><span>4</span><i class="live"></i><span>5</span></div>
+      <div><strong data-copy="exampleTitle"></strong><p data-copy="example"></p></div>
+    </div>
+  </section>
   <div class="settings">
     <label><span data-copy="tree"></span>
       <select id="tree">
@@ -119,6 +167,7 @@
   </div>
   <div class="workspace">
     <section class="panel board-panel" aria-label="棋盘" id="board-panel">
+      <div class="board-heading"><h2 data-copy="boardTitle"></h2><p data-copy="boardHint"></p></div>
       <output id="status" class="status" role="status" aria-atomic="true"></output>
       <svg id="board" viewBox="0 0 640 320" role="group" aria-label="树"></svg>
       <div class="legend">
@@ -140,6 +189,7 @@
       </details>
     </section>
     <aside class="panel aside" id="analysis">
+      <h2 data-copy="analysisTitle"></h2><p data-copy="analysisIntro"></p>
       <section>
         <h2 data-copy="openingValues"></h2>
         <div class="opening-values">
@@ -160,6 +210,7 @@
       </section>
     </aside>
   </div>
+  <nav class="project-nav"><a id="construction-link" href="d10.html" data-copy="constructionLink"></a><a href="../" data-copy="homeLink"></a></nav>
 </main>
 <script>
   const translations = {
@@ -201,6 +252,34 @@
     },
   };
 
+  translations["zh"] = {"title": "树上的隔离博弈", "intro": "两位玩家轮流操作：D（Dominator）想尽快结束，S（Staller）想尽量拖长。", "tree": "选择树", "starter": "谁先走", "p5": "P5 · 五点路径", "p9": "P9 · 九点路径", "d8": "D8 · 22 点", "d8Leaf": "D8 · 23 点（加一片叶）", "board": "树与顶点状态", "boardPanel": "游戏棋盘", "analysis": "策略分析", "openEdge": "橙线：两端均未覆盖", "coveredVertex": "浅绿：已覆盖的顶点", "optimalRing": "蓝圈：当前最优着", "playBest": "走一步最优着", "undo": "悔棋", "restart": "重新开始", "history": "落子记录", "openingValues": "从空局开始的最优总手数", "dStart": "D 先手", "sStart": "S 先手", "legalMoves": "可以选择的顶点", "moveHelp": "顶点 → 从这一步算起的最优剩余手数。蓝框表示当前玩家的最优选择。", "optimalLine": "双方的一条最优续局", "lineHelp": "双方随后都按最优策略行棋；并列时选择编号最小的顶点。", "noLine": "没有后续着法。", "noMoves": "还没有落子。", "rulesTitle": "详细规则", "rule": "所选顶点或它的邻点必须是一条橙色边的端点。已覆盖顶点满足条件时也可以选择。", "goal": "D（Dominator）使总手数尽量少；S（Staller）使总手数尽量多。", "language": "语言", "eyebrow": "互动数学 · 树上的博弈", "guideTitle": "先读懂规则", "guideLead": "你控制双方；每走一步，轮到另一位玩家。", "step1Title": "覆盖顶点", "step1": "点击一个顶点，会覆盖它自己和所有相邻顶点；浅绿色表示已覆盖。", "step2Title": "走合法的一手", "step2": "这一手必须新覆盖一条橙色边的至少一个端点。已覆盖的点也可能合法。", "step3Title": "结束游戏", "step3": "当橙色边全部消失，游戏结束。D 希望手数少，S 希望手数多。", "exampleTitle": "试试五点路径", "example": "先选 2：顶点 1、2、3 被覆盖，只剩橙边 4—5。再选已覆盖的 3，它会新覆盖 4，游戏结束。", "boardTitle": "开始对局", "boardHint": "点击棋盘上的顶点，或使用右侧合法着按钮。", "analysisTitle": "策略与提示", "analysisIntro": "蓝圈是最优建议；数字不是本手得分，而是双方最优行棋时的总剩余手数。", "constructionLink": "探索直径 10 的构造 →", "homeLink": "项目首页"};
+  translations["zh"].turn = (player, count) => player + " 行棋 · 双方最优时还需 " + count + " 手";
+  translations["zh"].end = count => "游戏结束 · 共 " + count + " 手";
+  translations["zh"].vertex = (number, optimal) => "顶点 " + number + (optimal ? "，最优着" : "");
+  translations["en"] = {"title": "Isolation game on trees", "intro": "Two players take turns: D (Dominator) tries to finish quickly; S (Staller) tries to make the game last.", "tree": "Choose a tree", "starter": "Who starts", "p5": "P5 · five-vertex path", "p9": "P9 · nine-vertex path", "d8": "D8 · 22 vertices", "d8Leaf": "D8 · 23 vertices (one extra leaf)", "board": "Tree and vertex states", "boardPanel": "Game board", "analysis": "Strategy analysis", "openEdge": "Orange: both endpoints uncovered", "coveredVertex": "Pale green: covered vertex", "optimalRing": "Blue ring: optimal move", "playBest": "Play an optimal move", "undo": "Undo", "restart": "Restart", "history": "Move history", "openingValues": "Optimal total from an empty board", "dStart": "D starts", "sStart": "S starts", "legalMoves": "Legal vertices", "moveHelp": "Vertex → optimal moves remaining, including this move. Blue outlines mark the current player’s best choices.", "optimalLine": "One optimal continuation", "lineHelp": "Both players continue optimally; ties go to the lowest-numbered vertex.", "noLine": "No further moves.", "noMoves": "No moves yet.", "rulesTitle": "Detailed rules", "rule": "The chosen vertex or a neighbor must be an endpoint of an orange edge. A covered vertex may still be played when this is true.", "goal": "D (Dominator) minimizes total moves; S (Staller) maximizes them.", "language": "Language", "eyebrow": "Interactive mathematics · games on trees", "guideTitle": "Learn the rules", "guideLead": "You control both sides; the turn changes after each move.", "step1Title": "Cover vertices", "step1": "Click a vertex to cover it and every neighbor. Pale green marks a covered vertex.", "step2Title": "Make a legal move", "step2": "A move must newly cover at least one endpoint of an orange edge. A covered vertex can still be legal.", "step3Title": "Finish the game", "step3": "The game ends when no orange edges remain. D wants fewer moves; S wants more.", "exampleTitle": "Try a five-vertex path", "example": "Play 2: vertices 1, 2 and 3 are covered, leaving orange edge 4—5. Then play the already covered 3: it newly covers 4 and ends the game.", "boardTitle": "Play the game", "boardHint": "Click a vertex on the board or use a legal-move button.", "analysisTitle": "Strategy and hints", "analysisIntro": "Blue rings suggest optimal moves. Numbers are not scores: they are the remaining length under optimal play.", "constructionLink": "Explore the diameter-10 construction →", "homeLink": "Project home"};
+  translations["en"].turn = (player, count) => player + " to move · " + count + " moves left under optimal play";
+  translations["en"].end = count => "Game over · " + count + " moves";
+  translations["en"].vertex = (number, optimal) => "Vertex " + number + (optimal ? ", optimal move" : "");
+  translations["ja"] = {"title": "木の孤立化ゲーム", "intro": "2 人が交互に進めます。D（Dominator）は早く終わらせ、S（Staller）は長引かせようとします。", "tree": "木を選ぶ", "starter": "先手", "p5": "P5・5 頂点の道", "p9": "P9・9 頂点の道", "d8": "D8・22 頂点", "d8Leaf": "D8・23 頂点（葉を追加）", "board": "木と頂点の状態", "boardPanel": "棋盤", "analysis": "戦略の分析", "openEdge": "オレンジ：両端が未被覆", "coveredVertex": "薄緑：被覆済みの頂点", "optimalRing": "青い輪：最善手", "playBest": "最善手を一手進める", "undo": "一手戻す", "restart": "最初から", "history": "棋譜", "openingValues": "初期局面からの最善手数", "dStart": "D が先手", "sStart": "S が先手", "legalMoves": "選べる頂点", "moveHelp": "頂点 → この手を含めた最善の残り手数。青枠は手番側の最善手です。", "optimalLine": "双方の最善進行の一例", "lineHelp": "双方が最善を尽くし、同点なら番号の小さい頂点を選びます。", "noLine": "続きの手はありません。", "noMoves": "まだ手がありません。", "rulesTitle": "詳しいルール", "rule": "選んだ頂点またはその隣接頂点が、オレンジ色の辺の端点でなければなりません。被覆済みの頂点も条件を満たせば選べます。", "goal": "D は総手数を減らし、S は増やそうとします。", "language": "言語", "eyebrow": "対話で学ぶ数学・木のゲーム", "guideTitle": "まずルールを確認", "guideLead": "両方のプレイヤーを操作します。一手ごとに手番が交代します。", "step1Title": "頂点を覆う", "step1": "頂点を選ぶと、その頂点と隣接する全頂点が覆われます。薄緑色が被覆済みです。", "step2Title": "合法手を選ぶ", "step2": "一手でオレンジ色の辺の端点を少なくとも一つ新たに覆います。被覆済みの頂点も選べる場合があります。", "step3Title": "ゲームを終える", "step3": "オレンジ色の辺がなくなると終了です。D は手数を減らし、S は増やします。", "exampleTitle": "5 頂点の道で試す", "example": "まず 2 を選ぶと 1・2・3 が覆われ、オレンジ色の辺 4—5 が残ります。次に被覆済みの 3 を選ぶと 4 が新たに覆われて終了します。", "boardTitle": "対局を始める", "boardHint": "棋盤の頂点か、合法手のボタンを選んでください。", "analysisTitle": "戦略とヒント", "analysisIntro": "青い輪は最善手の提案です。数字は得点ではなく、双方が最善を尽くした場合の残り手数です。", "constructionLink": "直径 10 の構成を見る →", "homeLink": "プロジェクトのトップ"};
+  translations["ja"].turn = (player, count) => player + " の手番 · 最善進行で残り " + count + " 手";
+  translations["ja"].end = count => "終了 · 合計 " + count + " 手";
+  translations["ja"].vertex = (number, optimal) => "頂点 " + number + (optimal ? "、最善手" : "");
+  translations["es"] = {"title": "Juego de aislamiento en árboles", "intro": "Dos jugadores alternan: D (Dominator) intenta terminar pronto y S (Staller) alargar la partida.", "tree": "Elegir árbol", "starter": "Quién empieza", "p5": "P5 · camino de cinco vértices", "p9": "P9 · camino de nueve vértices", "d8": "D8 · 22 vértices", "d8Leaf": "D8 · 23 vértices (una hoja más)", "board": "Árbol y estados de los vértices", "boardPanel": "Tablero", "analysis": "Análisis de estrategias", "openEdge": "Naranja: extremos sin cubrir", "coveredVertex": "Verde claro: vértice cubierto", "optimalRing": "Círculo azul: jugada óptima", "playBest": "Jugar una jugada óptima", "undo": "Deshacer", "restart": "Reiniciar", "history": "Historial", "openingValues": "Duración óptima desde el inicio", "dStart": "Empieza D", "sStart": "Empieza S", "legalMoves": "Vértices permitidos", "moveHelp": "Vértice → jugadas óptimas restantes, incluida esta. Los bordes azules indican las mejores opciones.", "optimalLine": "Una continuación óptima", "lineHelp": "Ambos juegan de forma óptima; en caso de empate se elige el número menor.", "noLine": "No quedan jugadas.", "noMoves": "Aún no hay jugadas.", "rulesTitle": "Reglas detalladas", "rule": "El vértice elegido o un vecino debe ser extremo de una arista naranja. También puede elegirse uno ya cubierto si cumple la regla.", "goal": "D minimiza el total de jugadas; S lo maximiza.", "language": "Idioma", "eyebrow": "Matemáticas interactivas · juegos en árboles", "guideTitle": "Aprende las reglas", "guideLead": "Controlas a ambos jugadores; el turno cambia después de cada jugada.", "step1Title": "Cubrir vértices", "step1": "Elige un vértice para cubrirlo junto con todos sus vecinos. El verde claro indica que está cubierto.", "step2Title": "Hacer una jugada válida", "step2": "Debes cubrir por primera vez al menos un extremo de una arista naranja. Un vértice ya cubierto también puede ser válido.", "step3Title": "Terminar la partida", "step3": "La partida termina cuando no quedan aristas naranjas. D busca menos jugadas; S busca más.", "exampleTitle": "Prueba un camino de cinco vértices", "example": "Juega 2: quedan cubiertos 1, 2 y 3 y solo queda la arista naranja 4—5. Luego juega el 3 ya cubierto: cubre 4 y termina la partida.", "boardTitle": "Comenzar la partida", "boardHint": "Pulsa un vértice del tablero o usa un botón de jugada válida.", "analysisTitle": "Estrategia y pistas", "analysisIntro": "Los círculos azules sugieren jugadas óptimas. Los números no son puntos: indican la duración restante con juego óptimo.", "constructionLink": "Explorar la construcción de diámetro 10 →", "homeLink": "Inicio del proyecto"};
+  translations["es"].turn = (player, count) => "Turno de " + player + " · quedan " + count + " jugadas con juego óptimo";
+  translations["es"].end = count => "Fin de la partida · " + count + " jugadas";
+  translations["es"].vertex = (number, optimal) => "Vértice " + number + (optimal ? ", jugada óptima" : "");
+  translations["fr"] = {"title": "Jeu d’isolement sur les arbres", "intro": "Deux joueurs alternent : D (Dominator) veut terminer vite, S (Staller) veut prolonger la partie.", "tree": "Choisir un arbre", "starter": "Premier joueur", "p5": "P5 · chemin à cinq sommets", "p9": "P9 · chemin à neuf sommets", "d8": "D8 · 22 sommets", "d8Leaf": "D8 · 23 sommets (une feuille ajoutée)", "board": "Arbre et état des sommets", "boardPanel": "Plateau", "analysis": "Analyse des stratégies", "openEdge": "Orange : extrémités non couvertes", "coveredVertex": "Vert clair : sommet couvert", "optimalRing": "Cercle bleu : coup optimal", "playBest": "Jouer un coup optimal", "undo": "Annuler", "restart": "Recommencer", "history": "Historique", "openingValues": "Durée optimale depuis le début", "dStart": "D commence", "sStart": "S commence", "legalMoves": "Sommets jouables", "moveHelp": "Sommet → coups optimaux restants, celui-ci compris. Les bordures bleues indiquent les meilleurs choix.", "optimalLine": "Une suite optimale", "lineHelp": "Les deux joueurs jouent au mieux ; en cas d’égalité, le plus petit numéro est choisi.", "noLine": "Aucun coup restant.", "noMoves": "Aucun coup joué.", "rulesTitle": "Règles détaillées", "rule": "Le sommet choisi ou un voisin doit être une extrémité d’une arête orange. Un sommet déjà couvert peut être choisi si la règle est respectée.", "goal": "D minimise le nombre total de coups ; S le maximise.", "language": "Langue", "eyebrow": "Mathématiques interactives · jeux sur les arbres", "guideTitle": "Comprendre les règles", "guideLead": "Vous contrôlez les deux joueurs ; le tour change après chaque coup.", "step1Title": "Couvrir des sommets", "step1": "Choisissez un sommet pour le couvrir avec tous ses voisins. Le vert clair indique un sommet couvert.", "step2Title": "Jouer un coup légal", "step2": "Le coup doit couvrir pour la première fois au moins une extrémité d’une arête orange. Un sommet déjà couvert peut rester jouable.", "step3Title": "Terminer la partie", "step3": "La partie se termine quand il ne reste aucune arête orange. D veut moins de coups, S en veut davantage.", "exampleTitle": "Essayez un chemin à cinq sommets", "example": "Jouez 2 : les sommets 1, 2 et 3 sont couverts ; seule l’arête 4—5 reste orange. Jouez ensuite 3, déjà couvert : il couvre 4 et termine la partie.", "boardTitle": "Commencer la partie", "boardHint": "Cliquez sur un sommet ou utilisez un bouton de coup légal.", "analysisTitle": "Stratégie et indices", "analysisIntro": "Les cercles bleus suggèrent des coups optimaux. Les nombres ne sont pas des points : ils donnent la durée restante en jeu optimal.", "constructionLink": "Explorer la construction de diamètre 10 →", "homeLink": "Accueil du projet"};
+  translations["fr"].turn = (player, count) => "À " + player + " de jouer · " + count + " coups restants en jeu optimal";
+  translations["fr"].end = count => "Partie terminée · " + count + " coups";
+  translations["fr"].vertex = (number, optimal) => "Sommet " + number + (optimal ? ", coup optimal" : "");
+  translations["de"] = {"title": "Isolationsspiel auf Bäumen", "intro": "Zwei Spieler wechseln sich ab: D (Dominator) möchte schnell beenden, S (Staller) das Spiel verlängern.", "tree": "Baum wählen", "starter": "Wer beginnt", "p5": "P5 · Pfad mit fünf Knoten", "p9": "P9 · Pfad mit neun Knoten", "d8": "D8 · 22 Knoten", "d8Leaf": "D8 · 23 Knoten (ein Blatt mehr)", "board": "Baum und Knotenzustände", "boardPanel": "Spielbrett", "analysis": "Strategieanalyse", "openEdge": "Orange: beide Enden unüberdeckt", "coveredVertex": "Hellgrün: überdeckter Knoten", "optimalRing": "Blauer Ring: optimaler Zug", "playBest": "Optimalen Zug spielen", "undo": "Zurücknehmen", "restart": "Neustart", "history": "Zugverlauf", "openingValues": "Optimale Gesamtdauer ab Spielbeginn", "dStart": "D beginnt", "sStart": "S beginnt", "legalMoves": "Zulässige Knoten", "moveHelp": "Knoten → optimale verbleibende Züge einschließlich dieses Zuges. Blaue Ränder markieren die besten Möglichkeiten.", "optimalLine": "Eine optimale Fortsetzung", "lineHelp": "Beide Seiten spielen optimal; bei Gleichstand zählt die kleinste Nummer.", "noLine": "Keine weiteren Züge.", "noMoves": "Noch keine Züge.", "rulesTitle": "Ausführliche Regeln", "rule": "Der gewählte Knoten oder ein Nachbar muss Endpunkt einer orangefarbenen Kante sein. Ein überdeckter Knoten darf bei erfüllter Regel gewählt werden.", "goal": "D minimiert die Gesamtzahl der Züge; S maximiert sie.", "language": "Sprache", "eyebrow": "Interaktive Mathematik · Spiele auf Bäumen", "guideTitle": "Die Regeln kennenlernen", "guideLead": "Sie steuern beide Seiten; nach jedem Zug wechselt die Partei.", "step1Title": "Knoten überdecken", "step1": "Wählen Sie einen Knoten: Er und alle Nachbarn werden überdeckt. Hellgrün zeigt überdeckte Knoten.", "step2Title": "Einen zulässigen Zug spielen", "step2": "Der Zug muss mindestens einen Endpunkt einer orangefarbenen Kante neu überdecken. Auch ein überdeckter Knoten kann zulässig sein.", "step3Title": "Das Spiel beenden", "step3": "Das Spiel endet, sobald keine orangefarbene Kante bleibt. D möchte weniger Züge, S mehr.", "exampleTitle": "Beispiel mit fünf Knoten", "example": "Wählen Sie 2: 1, 2 und 3 sind überdeckt; nur 4—5 bleibt orange. Wählen Sie dann die bereits überdeckte 3: Sie überdeckt 4 neu und beendet das Spiel.", "boardTitle": "Partie beginnen", "boardHint": "Klicken Sie einen Knoten an oder nutzen Sie eine Zugschaltfläche.", "analysisTitle": "Strategie und Hinweise", "analysisIntro": "Blaue Ringe empfehlen optimale Züge. Die Zahlen sind keine Punkte, sondern die Restdauer bei optimalem Spiel.", "constructionLink": "Konstruktion mit Durchmesser 10 erkunden →", "homeLink": "Projektstartseite"};
+  translations["de"].turn = (player, count) => player + " am Zug · " + count + " Züge bei optimalem Spiel";
+  translations["de"].end = count => "Spiel beendet · " + count + " Züge";
+  translations["de"].vertex = (number, optimal) => "Knoten " + number + (optimal ? ", optimaler Zug" : "");
+  translations["pt"] = {"title": "Jogo de isolamento em árvores", "intro": "Dois jogadores se alternam: D (Dominator) tenta terminar logo e S (Staller) tenta prolongar a partida.", "tree": "Escolher árvore", "starter": "Quem começa", "p5": "P5 · caminho de cinco vértices", "p9": "P9 · caminho de nove vértices", "d8": "D8 · 22 vértices", "d8Leaf": "D8 · 23 vértices (uma folha a mais)", "board": "Árvore e estados dos vértices", "boardPanel": "Tabuleiro", "analysis": "Análise de estratégias", "openEdge": "Laranja: extremos não cobertos", "coveredVertex": "Verde-claro: vértice coberto", "optimalRing": "Círculo azul: jogada ótima", "playBest": "Fazer uma jogada ótima", "undo": "Desfazer", "restart": "Reiniciar", "history": "Histórico", "openingValues": "Duração ótima desde o início", "dStart": "D começa", "sStart": "S começa", "legalMoves": "Vértices permitidos", "moveHelp": "Vértice → jogadas ótimas restantes, incluindo esta. As bordas azuis indicam as melhores opções.", "optimalLine": "Uma continuação ótima", "lineHelp": "Ambos jogam de forma ótima; em caso de empate, escolhe-se o menor número.", "noLine": "Não há mais jogadas.", "noMoves": "Nenhuma jogada ainda.", "rulesTitle": "Regras detalhadas", "rule": "O vértice escolhido ou um vizinho deve ser extremidade de uma aresta laranja. Um vértice já coberto também pode ser escolhido se cumprir a regra.", "goal": "D minimiza o total de jogadas; S o maximiza.", "language": "Idioma", "eyebrow": "Matemática interativa · jogos em árvores", "guideTitle": "Conheça as regras", "guideLead": "Você controla os dois jogadores; o turno muda após cada jogada.", "step1Title": "Cobrir vértices", "step1": "Escolha um vértice para cobri-lo e cobrir todos os seus vizinhos. Verde-claro indica que ele está coberto.", "step2Title": "Fazer uma jogada válida", "step2": "A jogada deve cobrir pela primeira vez pelo menos uma extremidade de uma aresta laranja. Um vértice já coberto também pode ser válido.", "step3Title": "Encerrar a partida", "step3": "O jogo termina quando não restam arestas laranja. D quer menos jogadas; S quer mais.", "exampleTitle": "Experimente um caminho de cinco vértices", "example": "Jogue 2: 1, 2 e 3 ficam cobertos, restando apenas a aresta laranja 4—5. Depois jogue o 3 já coberto: ele cobre 4 e encerra a partida.", "boardTitle": "Começar a partida", "boardHint": "Clique em um vértice ou use um botão de jogada válida.", "analysisTitle": "Estratégia e dicas", "analysisIntro": "Círculos azuis sugerem jogadas ótimas. Os números não são pontos: indicam a duração restante sob jogo ótimo.", "constructionLink": "Explorar a construção de diâmetro 10 →", "homeLink": "Página inicial do projeto"};
+  translations["pt"].turn = (player, count) => "Vez de " + player + " · restam " + count + " jogadas sob jogo ótimo";
+  translations["pt"].end = count => "Fim da partida · " + count + " jogadas";
+  translations["pt"].vertex = (number, optimal) => "Vértice " + number + (optimal ? ", jogada ótima" : "");
   const el = id => document.getElementById(id);
   const copy = () => translations[el("language").value];
   const playerName = isStaller => isStaller ? "S" : "D";
@@ -365,7 +444,9 @@
 
   function updateLanguage() {
     const strings = copy();
-    document.documentElement.lang = el("language").value === "zh" ? "zh-Hans" : "en";
+    document.documentElement.lang = el("language").value === "zh" ? "zh-Hans" : el("language").value;
+    el("language").setAttribute("aria-label", strings.language);
+    el("construction-link").href = "d10.html?lang=" + encodeURIComponent(el("language").value);
     document.title = strings.title;
     document.querySelectorAll("[data-copy]").forEach(node => { node.textContent = strings[node.dataset.copy]; });
     el("board").setAttribute("aria-label", strings.board);
@@ -395,6 +476,8 @@
     updateLanguage();
     render();
   });
+  const requestedLanguage = new URLSearchParams(location.search).get("lang");
+  if (requestedLanguage && translations[requestedLanguage]) el("language").value = requestedLanguage;
   updateLanguage();
   newGame();
 </script>

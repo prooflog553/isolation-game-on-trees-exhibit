@@ -37,22 +37,45 @@
     figcaption { color: #40594f; margin-top: .65rem; }
     .diameter { margin-top: .9rem; padding: .8rem 1rem; border-left: 3px solid #a04829; background: #f1e7dc; }
     .diameter p { color: #533b2f; }
+
+    body { background: #f3f2e9; }
+    main { max-width: 78rem; }
+    header { padding-bottom: 1.2rem; border-bottom: 1px solid #cdd5c9; }
+    .eyebrow { color: #9a4a2c; text-transform: uppercase; font-size: .76rem; font-weight: 750; letter-spacing: .13em; margin-bottom: .45rem; }
+    .language { background: #fffefa; border: 1px solid #cdd5c9; padding: .55rem .7rem; border-radius: .65rem; }
+    .lede { max-width: 55rem; margin: 1.3rem 0 .8rem; font-size: 1.06rem; }
+    .explain { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7rem; margin: 1rem 0; }
+    .explain article { background: #fffefa; border: 1px solid #cdd5c9; border-radius: .65rem; padding: .9rem; }
+    .explain b { color: #225545; }
+    .explain p { font-size: .9rem; }
+    .summary { padding: .85rem 1rem; border-radius: .6rem; background: #e0ede0; }
+    figure { border-radius: .8rem; }
+    figcaption { line-height: 1.55; }
+    .project-nav { display:flex; flex-wrap:wrap; gap:1rem; margin-top:1.5rem; }
+    a { color: #145641; text-underline-offset:.2em; }
+    @media (max-width: 40rem) { .explain { grid-template-columns: 1fr; } }
     @media (max-width: 47rem) { .grid { grid-template-columns: minmax(0, 1fr); } }
   </style>
 </head>
 <body>
 <main>
   <header>
-    <h1 data-copy="title">直径 10 的反例族</h1>
-    <label>中文 / English
-      <select id="language" aria-label="语言 / Language">
+    <div><p class="eyebrow" data-copy="eyebrow"></p><h1 data-copy="title">直径 10 的反例族</h1></div>
+    <label class="language"><span aria-hidden="true">🌐</span> <span data-copy="language"></span>
+      <select id="language">
         <option value="zh">简体中文</option>
         <option value="en">English</option>
+        <option value="ja" lang="ja">日本語</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="pt" lang="pt">Português</option>
       </select>
     </label>
   </header>
   <noscript><p>此图需要 JavaScript。 / This diagram requires JavaScript. <a href="../assets/d10-module.svg">静态模块图 / Static module diagram</a></p></noscript>
-  <p data-copy="intro"></p>
+  <p class="lede" data-copy="intro"></p>
+  <section class="explain" aria-label="">
+    <article><b data-copy="step1Title"></b><p data-copy="step1"></p></article>
+    <article><b data-copy="step2Title"></b><p data-copy="step2"></p></article>
+    <article><b data-copy="step3Title"></b><p data-copy="step3"></p></article>
+  </section>
   <div class="controls">
     <label><span data-copy="parameter"></span><select id="parameter"></select></label>
     <label><span data-copy="zoom"></span>
@@ -90,6 +113,7 @@
     <p data-copy="bound"></p>
     <p><a href="../manuscript/Isolation_Game_Research_Report.pdf#page=59" data-copy="proof"></a></p>
   </section>
+  <nav class="project-nav"><a id="game-link" href="index.html" data-copy="gameLink"></a><a href="../" data-copy="homeLink"></a></nav>
 </main>
 <script>
   const strings = {
@@ -124,6 +148,27 @@
       summary: (m, n, k) => m + " modules × 15 vertices = " + n + " vertices · diameter 10 · at least " + 91 * k + " moves for either starter, against a ceiling of " + 90 * k,
     },
   };
+  strings["zh"] = {"title": "直径 10 的反例族", "intro": "把一个小模块重复并连接，就能构造出突破上取整界的大树。下面分两步看清它是怎样搭起来的。", "parameter": "参数 k", "zoom": "图形缩放", "module": "第一步：一个 15 点模块", "star": "第二步：连接模块中心", "moduleTitle": "一个模块：中心与两条七点路径的中点相连", "moduleCaption": "两条互不相交的七点路径，各以中点接到共同中心。共有 1 + 2 × 7 = 15 点；从模块中心到最远端点有 4 条边。", "starCaption": "每个圆点表示一个已有模块的中心，不是整棵树的全部顶点。只添加模块中心之间的边；橙线标出两个外围模块与星心的连接。", "diameter": "为什么直径恰好是 10？", "distance": "任意两点之间最多依次经过 4 条模块内边、2 条星形连接边、4 条模块内边。取两个标出的外围模块中距各自中心最远的端点，恰好得到 4 + 2 + 4 = 10。", "bound": "对每个正整数 k 构造均成立；91k 是两种先手下的下界，不是宣称精确值。这里可预览 k = 1 到 10。", "proof": "阅读论文附录 B 的策略证明", "language": "语言", "eyebrow": "互动数学 · 反例构造", "step1Title": "1 · 构造模块", "step1": "两个七点路径加一个共同中心，共 15 个顶点。", "step2Title": "2 · 拼成一棵树", "step2": "取 14k 个模块，将它们已有的中心连成星形，不增加顶点。", "step3Title": "3 · 比较手数", "step3": "证明给出至少 91k 手；对应的上取整基准是 90k。", "gameLink": "← 返回互动棋盘", "homeLink": "项目首页"};
+  strings["zh"].summary = (m,n,k) => m + " 个模块 × 15 点 = " + n + " 个顶点 · 直径 10 · 至少 " + 91*k + " 手，基准 " + 90*k + " 手";
+  strings["zh"].starTitle = m => "含 " + m + " 个模块中心的星，标出两个外围模块的连接";
+  strings["en"] = {"title": "The diameter-10 counterexample family", "intro": "Repeat and connect a small module to build trees that exceed the rounded bound. Follow the two diagrams to see how.", "parameter": "Parameter k", "zoom": "Diagram zoom", "module": "Step 1: one 15-vertex module", "star": "Step 2: connect module centers", "moduleTitle": "One module: a center joined to the midpoints of two seven-vertex paths", "moduleCaption": "Join the midpoints of two disjoint seven-vertex paths to a shared center. There are 1 + 2 × 7 = 15 vertices; a farthest tip is 4 edges from the module center.", "starCaption": "Each point represents the center of an existing module, not every vertex of the tree. Only edges between centers are added; orange marks the two outer modules connected through the hub.", "diameter": "Why is the diameter exactly 10?", "distance": "Between any two vertices, a path uses at most 4 edges inside the first module, 2 through the star, and 4 inside the last. Farthest tips in the two highlighted outer modules give exactly 4 + 2 + 4 = 10.", "bound": "The construction works for every positive integer k. The 91k moves are a lower bound for both starters, not an exact-value claim. Preview k = 1 to 10 here.", "proof": "Read the strategy proof in Appendix B", "language": "Language", "eyebrow": "Interactive mathematics · a counterexample", "step1Title": "1 · Build a module", "step1": "Two seven-vertex paths and one shared center give 15 vertices.", "step2Title": "2 · Assemble a tree", "step2": "Take 14k modules and connect their existing centers as a star, adding no vertices.", "step3Title": "3 · Compare move counts", "step3": "The proof gives at least 91k moves; the rounded benchmark is 90k.", "gameLink": "← Back to the game", "homeLink": "Project home"};
+  strings["en"].summary = (m,n,k) => m + " modules × 15 vertices = " + n + " vertices · diameter 10 · at least " + 91*k + " moves, benchmark " + 90*k;
+  strings["en"].starTitle = m => "Star of " + m + " module centers, highlighting two outer connections";
+  strings["ja"] = {"title": "直径 10 の反例族", "intro": "小さなモジュールを繰り返してつなぎ、上取整の上界を超える木を作ります。二つの図で構成を見てみましょう。", "parameter": "パラメータ k", "zoom": "図の拡大", "module": "手順 1：15 頂点のモジュール", "star": "手順 2：モジュールの中心をつなぐ", "moduleTitle": "二つの七頂点の道の中点を共通の中心につないだモジュール", "moduleCaption": "互いに交わらない二つの七頂点の道の中点を共通の中心につなぎます。頂点は 1 + 2 × 7 = 15 個で、中心から最遠端点まで 4 辺です。", "starCaption": "各点は既存のモジュールの中心であり、木の全頂点ではありません。中心間に辺だけを加えます。オレンジ色は二つの周辺モジュールと星の中心の接続を示します。", "diameter": "直径がちょうど 10 になる理由", "distance": "任意の二点間は、最初のモジュール内で最大 4 辺、星の中で 2 辺、最後のモジュール内で 4 辺です。強調した二つの周辺モジュールの最遠端点では、ちょうど 4 + 2 + 4 = 10 辺になります。", "bound": "構成はすべての正整数 k で成立します。91k はどちらが先手でも成り立つ下界であり、厳密値の主張ではありません。ここでは k = 1～10 を表示できます。", "proof": "論文の付録 B で戦略の証明を読む", "language": "言語", "eyebrow": "対話で学ぶ数学・反例構成", "step1Title": "1・モジュールを作る", "step1": "七頂点の道を二本と共通の中心一つで、計 15 頂点です。", "step2Title": "2・一つの木につなぐ", "step2": "14k 個のモジュールの既存の中心を星形につなぎます。頂点は増えません。", "step3Title": "3・手数を比べる", "step3": "証明による下界は 91k 手、上取整の基準は 90k 手です。", "gameLink": "← ゲームに戻る", "homeLink": "プロジェクトのトップ"};
+  strings["ja"].summary = (m,n,k) => m + " モジュール × 15 頂点 = " + n + " 頂点 · 直径 10 · 少なくとも " + 91*k + " 手、基準 " + 90*k + " 手";
+  strings["ja"].starTitle = m => m + " 個のモジュール中心の星、二つの周辺接続を強調";
+  strings["es"] = {"title": "La familia de contraejemplos de diámetro 10", "intro": "Repetimos y conectamos un módulo pequeño para construir árboles que superan la cota redondeada hacia arriba. Los dos diagramas muestran cómo.", "parameter": "Parámetro k", "zoom": "Ampliación", "module": "Paso 1: un módulo de 15 vértices", "star": "Paso 2: conectar los centros", "moduleTitle": "Un módulo: un centro unido a los puntos medios de dos caminos de siete vértices", "moduleCaption": "Unimos los puntos medios de dos caminos disjuntos de siete vértices a un centro común. Hay 1 + 2 × 7 = 15 vértices; un extremo más lejano está a 4 aristas del centro.", "starCaption": "Cada punto representa el centro de un módulo existente, no todos los vértices del árbol. Solo se añaden aristas entre centros; el naranja marca la conexión de dos módulos exteriores con el centro de la estrella.", "diameter": "¿Por qué el diámetro es exactamente 10?", "distance": "Entre dos vértices se recorren como máximo 4 aristas del primer módulo, 2 de la estrella y 4 del último. Los extremos más alejados de los dos módulos exteriores destacados dan exactamente 4 + 2 + 4 = 10.", "bound": "La construcción vale para todo entero positivo k. 91k es una cota inferior para ambos jugadores iniciales, no un valor exacto. Aquí se muestran valores de k entre 1 y 10.", "proof": "Leer la prueba de la estrategia en el apéndice B", "language": "Idioma", "eyebrow": "Matemáticas interactivas · construcción de un contraejemplo", "step1Title": "1 · Construir un módulo", "step1": "Dos caminos de siete vértices y un centro común suman 15 vértices.", "step2Title": "2 · Formar un árbol", "step2": "Toma 14k módulos y conecta sus centros existentes en estrella, sin añadir vértices.", "step3Title": "3 · Comparar jugadas", "step3": "La prueba da al menos 91k jugadas; la cota de referencia es 90k.", "gameLink": "← Volver al juego", "homeLink": "Inicio del proyecto"};
+  strings["es"].summary = (m,n,k) => m + " módulos × 15 vértices = " + n + " vértices · diámetro 10 · al menos " + 91*k + " jugadas, referencia " + 90*k;
+  strings["es"].starTitle = m => "Estrella de " + m + " centros, con dos conexiones exteriores destacadas";
+  strings["fr"] = {"title": "La famille de contre-exemples de diamètre 10", "intro": "En répétant et reliant un petit module, on construit des arbres qui dépassent la borne arrondie à l’entier supérieur. Les deux schémas montrent la construction.", "parameter": "Paramètre k", "zoom": "Zoom du schéma", "module": "Étape 1 : un module de 15 sommets", "star": "Étape 2 : relier les centres", "moduleTitle": "Un module : un centre relié aux milieux de deux chemins à sept sommets", "moduleCaption": "On relie les milieux de deux chemins disjoints à sept sommets à un centre commun. Le module compte 1 + 2 × 7 = 15 sommets ; une extrémité la plus éloignée se trouve à 4 arêtes du centre.", "starCaption": "Chaque point représente le centre d’un module existant, et non tous les sommets de l’arbre. On ajoute seulement des arêtes entre les centres ; l’orange marque les liens de deux modules périphériques avec le centre de l’étoile.", "diameter": "Pourquoi le diamètre vaut-il exactement 10 ?", "distance": "Entre deux sommets, un chemin parcourt au plus 4 arêtes dans le premier module, 2 dans l’étoile et 4 dans le dernier. Les extrémités les plus éloignées des deux modules périphériques mis en évidence donnent exactement 4 + 2 + 4 = 10.", "bound": "La construction vaut pour tout entier positif k. 91k est une borne inférieure pour les deux premiers joueurs possibles, pas une valeur exacte. Ici, k varie de 1 à 10.", "proof": "Lire la preuve de la stratégie dans l’annexe B", "language": "Langue", "eyebrow": "Mathématiques interactives · construction d’un contre-exemple", "step1Title": "1 · Construire un module", "step1": "Deux chemins de sept sommets et un centre commun donnent 15 sommets.", "step2Title": "2 · Former un arbre", "step2": "Prenez 14k modules et reliez leurs centres existants en étoile, sans ajouter de sommets.", "step3Title": "3 · Comparer les coups", "step3": "La preuve donne au moins 91k coups ; la borne de référence vaut 90k.", "gameLink": "← Retour au jeu", "homeLink": "Accueil du projet"};
+  strings["fr"].summary = (m,n,k) => m + " modules × 15 sommets = " + n + " sommets · diamètre 10 · au moins " + 91*k + " coups, référence " + 90*k;
+  strings["fr"].starTitle = m => "Étoile de " + m + " centres, avec deux liaisons périphériques mises en évidence";
+  strings["de"] = {"title": "Die Gegenbeispielfamilie mit Durchmesser 10", "intro": "Durch Wiederholen und Verbinden eines kleinen Moduls entstehen Bäume, die die aufgerundete Schranke überschreiten. Die beiden Grafiken zeigen den Aufbau.", "parameter": "Parameter k", "zoom": "Grafik vergrößern", "module": "Schritt 1: ein Modul mit 15 Knoten", "star": "Schritt 2: Modulzentren verbinden", "moduleTitle": "Ein Modul: ein Zentrum verbunden mit den Mittelknoten zweier Pfade aus sieben Knoten", "moduleCaption": "Die Mittelknoten zweier disjunkter Pfade mit je sieben Knoten werden mit einem gemeinsamen Zentrum verbunden. Es gibt 1 + 2 × 7 = 15 Knoten; ein entferntester Endpunkt liegt 4 Kanten vom Zentrum entfernt.", "starCaption": "Jeder Punkt steht für das Zentrum eines vorhandenen Moduls, nicht für alle Knoten des Baumes. Nur Kanten zwischen Zentren werden hinzugefügt; Orange zeigt die Verbindung zweier äußerer Module mit dem Sternzentrum.", "diameter": "Warum ist der Durchmesser genau 10?", "distance": "Ein Weg zwischen zwei Knoten enthält höchstens 4 Kanten im ersten Modul, 2 im Stern und 4 im letzten. Die entferntesten Endpunkte der beiden hervorgehobenen äußeren Module ergeben genau 4 + 2 + 4 = 10.", "bound": "Die Konstruktion gilt für jede positive ganze Zahl k. 91k ist eine untere Schranke für beide Startvarianten, keine Behauptung des exakten Werts. Hier lassen sich k = 1 bis 10 anzeigen.", "proof": "Strategiebeweis in Anhang B lesen", "language": "Sprache", "eyebrow": "Interaktive Mathematik · Gegenbeispiel", "step1Title": "1 · Modul bauen", "step1": "Zwei Pfade mit je sieben Knoten und ein gemeinsames Zentrum ergeben 15 Knoten.", "step2Title": "2 · Baum zusammensetzen", "step2": "Verbinden Sie die vorhandenen Zentren von 14k Modulen sternförmig, ohne Knoten hinzuzufügen.", "step3Title": "3 · Zugzahlen vergleichen", "step3": "Der Beweis liefert mindestens 91k Züge; der aufgerundete Vergleichswert beträgt 90k.", "gameLink": "← Zurück zum Spiel", "homeLink": "Projektstartseite"};
+  strings["de"].summary = (m,n,k) => m + " Module × 15 Knoten = " + n + " Knoten · Durchmesser 10 · mindestens " + 91*k + " Züge, Vergleichswert " + 90*k;
+  strings["de"].starTitle = m => "Stern aus " + m + " Modulzentren mit zwei hervorgehobenen äußeren Verbindungen";
+  strings["pt"] = {"title": "A família de contraexemplos de diâmetro 10", "intro": "Repetimos e conectamos um módulo pequeno para construir árvores que ultrapassam a cota arredondada para cima. Os dois diagramas mostram como.", "parameter": "Parâmetro k", "zoom": "Ampliação", "module": "Etapa 1: um módulo de 15 vértices", "star": "Etapa 2: ligar os centros", "moduleTitle": "Um módulo: um centro ligado aos pontos médios de dois caminhos de sete vértices", "moduleCaption": "Ligamos os pontos médios de dois caminhos disjuntos de sete vértices a um centro comum. São 1 + 2 × 7 = 15 vértices; uma extremidade mais distante fica a 4 arestas do centro.", "starCaption": "Cada ponto representa o centro de um módulo existente, não todos os vértices da árvore. Acrescentam-se apenas arestas entre centros; o laranja marca a ligação de dois módulos externos ao centro da estrela.", "diameter": "Por que o diâmetro é exatamente 10?", "distance": "Entre dois vértices, um caminho percorre no máximo 4 arestas no primeiro módulo, 2 na estrela e 4 no último. As extremidades mais distantes dos dois módulos externos destacados dão exatamente 4 + 2 + 4 = 10.", "bound": "A construção vale para todo inteiro positivo k. 91k é uma cota inferior para qualquer primeiro jogador, não um valor exato. Aqui é possível visualizar k de 1 a 10.", "proof": "Leia a prova da estratégia no apêndice B", "language": "Idioma", "eyebrow": "Matemática interativa · construção de um contraexemplo", "step1Title": "1 · Construir um módulo", "step1": "Dois caminhos de sete vértices e um centro comum somam 15 vértices.", "step2Title": "2 · Formar uma árvore", "step2": "Use 14k módulos e ligue seus centros existentes em estrela, sem adicionar vértices.", "step3Title": "3 · Comparar jogadas", "step3": "A prova fornece pelo menos 91k jogadas; a cota de referência é 90k.", "gameLink": "← Voltar ao jogo", "homeLink": "Página inicial do projeto"};
+  strings["pt"].summary = (m,n,k) => m + " módulos × 15 vértices = " + n + " vértices · diâmetro 10 · pelo menos " + 91*k + " jogadas, referência " + 90*k;
+  strings["pt"].starTitle = m => "Estrela de " + m + " centros, com duas ligações externas destacadas";
   const el = id => document.getElementById(id);
   const svg = (tag, attrs) => {
     const node = document.createElementNS("http://www.w3.org/2000/svg", tag);
@@ -171,7 +216,9 @@
   function refresh() {
     const lang = el("language").value;
     const copy = strings[lang];
-    document.documentElement.lang = lang === "zh" ? "zh-Hans" : "en";
+    document.documentElement.lang = lang === "zh" ? "zh-Hans" : lang;
+    el("language").setAttribute("aria-label", copy.language);
+    el("game-link").href = "index.html?lang=" + encodeURIComponent(lang);
     document.title = copy.title;
     document.querySelectorAll("[data-copy]").forEach(n => { n.textContent = copy[n.dataset.copy]; });
     const k = Number(el("parameter").value);
@@ -188,6 +235,8 @@
   el("zoom").addEventListener("change", () => {
     document.documentElement.style.setProperty("--zoom", el("zoom").value);
   });
+  const requestedLanguage = new URLSearchParams(location.search).get("lang");
+  if (requestedLanguage && strings[requestedLanguage]) el("language").value = requestedLanguage;
   drawModule();
   refresh();
 </script>

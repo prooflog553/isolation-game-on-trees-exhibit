@@ -2,9 +2,9 @@
 
 [English](README.md) · [简体中文](README.zh-Hans.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
 
-[简体中文](README.zh-Hans.md) · [Play online](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [D10 diagram](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+[简体中文](README.zh-Hans.md) · [Play online](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=en) · [D10 diagram](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html?lang=en)
 
-Download [the self-contained HTML board](index.html) and open it in a browser; no installation is needed. Select a tree and a starting player. You can click a vertex, focus it with Tab and press Enter or Space, or use the legal-move buttons. Switching between English and Chinese keeps the current game.
+Download [the self-contained HTML board](index.html) and open it in a browser; no installation is needed. Select a tree and a starting player. You can click a vertex, focus it with Tab and press Enter or Space, or use the legal-move buttons. Switching languages keeps the current game.
 
 Each move covers the chosen vertex and its neighbors and must newly cover an endpoint of an orange edge. A previously covered vertex can still be played if it satisfies that rule. Blue outlines mark every optimal move for the player to move. The number on a legal-move button includes that move and gives the remaining length under optimal play by both sides.
 

@@ -2,9 +2,9 @@
 
 [English](README.md) · [简体中文](README.zh-Hans.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
 
-[English](README.md) · [Accueil en français](../README.fr.md) · [Plateau en ligne](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [Construction D10](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+[English](README.md) · [Accueil en français](../README.fr.md) · [Plateau en ligne](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=fr) · [Construction D10](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html?lang=fr)
 
-Téléchargez le [plateau HTML autonome](index.html) et ouvrez-le dans un navigateur, sans installation. Choisissez un arbre et le premier joueur. Cliquez sur un sommet, atteignez-le avec Tab puis appuyez sur Entrée ou Espace, ou utilisez les boutons des coups légaux. Le passage de l'anglais au chinois conserve la partie.
+Téléchargez le [plateau HTML autonome](index.html) et ouvrez-le dans un navigateur, sans installation. Choisissez un arbre et le premier joueur. Cliquez sur un sommet, atteignez-le avec Tab puis appuyez sur Entrée ou Espace, ou utilisez les boutons des coups légaux. Le changement de langue conserve la partie.
 
 Chaque coup couvre le sommet choisi et ses voisins ; il doit couvrir pour la première fois une extrémité d'une arête orange. Un sommet déjà couvert reste jouable s'il satisfait cette condition. Les contours bleus indiquent tous les coups optimaux du joueur au trait. Le nombre affiché sur chaque bouton inclut ce coup et donne le nombre de coups restants si les deux joueurs jouent au mieux.
 

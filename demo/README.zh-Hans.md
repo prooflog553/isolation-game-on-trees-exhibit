@@ -2,9 +2,9 @@
 
 [English](README.md) · [简体中文](README.zh-Hans.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
 
-[English](README.md) · [在线棋盘](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [D10 构造图](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+[English](README.md) · [在线棋盘](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=zh) · [D10 构造图](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html?lang=zh)
 
-下载[单文件棋盘](index.html)，用浏览器打开即可，无需安装。选择树和先手后，可以点击顶点，也可以用 Tab 键聚焦顶点，再按 Enter 或空格，或者使用合法着按钮。切换中英文时，当前棋局会保留。
+下载[单文件棋盘](index.html)，用浏览器打开即可，无需安装。选择树和先手后，可以点击顶点，也可以用 Tab 键聚焦顶点，再按 Enter 或空格，或者使用合法着按钮。切换语言时，当前棋局会保留。
 
 每手覆盖所选顶点及其邻点，并且必须新覆盖一条橙色边的端点。已经覆盖的顶点只要满足这一条件，仍然可以选择。蓝框标出当前一方的全部最优着。合法着按钮上的数字包含这一步，表示双方此后都按最优策略行棋时，还需要多少手。
 

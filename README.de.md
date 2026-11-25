@@ -4,7 +4,7 @@
 
 **Wie beeinflusst der Durchmesser eines Baumes die Dauer des Isolationsspiels?** Für die hier untersuchte aufgerundete Schranke liegt die entscheidende Grenze zwischen Durchmesser 9 und 10.
 
-[Aufsatz (PDF, Englisch)](manuscript/Isolation_Game_Research_Report.pdf) · [Lean-Quellen und Builds (Englisch)](formal/README.md) · [Interaktives Spielbrett (Englisch/Chinesisch)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html)
+[Aufsatz (PDF, Englisch)](manuscript/Isolation_Game_Research_Report.pdf) · [Lean-Quellen und Builds (Englisch)](formal/README.md) · [Interaktives Spielbrett](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=de)
 
 ## Zusammenfassung
 
@@ -47,7 +47,7 @@ Für D9 widerlegte ein Gegenbeispiel auf vormarkierten Wäldern die allgemeine R
 
 - [Vollständiger Aufsatz (PDF, Englisch)](manuscript/Isolation_Game_Research_Report.pdf) · [Beweisübersicht (Englisch)](EVIDENCE_MAP.md)
 - [Forschungsverlauf (Englisch)](RESEARCH.md) · [Anleitung zur Reproduktion (Englisch)](REPRODUCE.md) · [Lean-Quellen und Builds (Englisch)](formal/README.md)
-- [Interaktives Spielbrett (Englisch/Chinesisch)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [D10-Konstruktion (Englisch/Chinesisch)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+- [Interaktives Spielbrett](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=de) · [D10-Konstruktion](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html?lang=de)
 - [Anleitung zum Spielbrett (Deutsch)](demo/README.de.md)
 - [Lizenzen und Hinweise (Englisch)](LICENSE_SCOPE.md)
 

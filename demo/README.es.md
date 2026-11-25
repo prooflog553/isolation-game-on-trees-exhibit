@@ -2,9 +2,9 @@
 
 [English](README.md) · [简体中文](README.zh-Hans.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
 
-[English](README.md) · [Inicio en español](../README.es.md) · [Tablero en línea](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [Construcción D10](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+[English](README.md) · [Inicio en español](../README.es.md) · [Tablero en línea](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=es) · [Construcción D10](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html?lang=es)
 
-Descarga el [tablero HTML autónomo](index.html) y ábrelo en un navegador, sin instalar nada. Elige un árbol y quién empieza. Puedes pulsar un vértice, seleccionarlo con Tab y usar Enter o la barra espaciadora, o emplear los botones de jugadas válidas. El tablero conserva la partida al cambiar entre inglés y chino.
+Descarga el [tablero HTML autónomo](index.html) y ábrelo en un navegador, sin instalar nada. Elige un árbol y quién empieza. Puedes pulsar un vértice, seleccionarlo con Tab y usar Enter o la barra espaciadora, o emplear los botones de jugadas válidas. El tablero conserva la partida al cambiar de idioma.
 
 Cada jugada cubre el vértice elegido y sus vecinos; debe cubrir por primera vez un extremo de una arista naranja. Se puede elegir un vértice ya cubierto si cumple esa condición. Los contornos azules señalan todas las jugadas óptimas del jugador de turno. El número de cada botón incluye esa jugada e indica cuántas quedan si ambos jugadores actúan de forma óptima.
 

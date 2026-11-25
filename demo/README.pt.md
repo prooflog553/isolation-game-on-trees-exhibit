@@ -2,9 +2,9 @@
 
 [English](README.md) · [简体中文](README.zh-Hans.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
 
-[English](README.md) · [Página inicial em português](../README.pt.md) · [Tabuleiro on-line](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [Construção D10](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+[English](README.md) · [Página inicial em português](../README.pt.md) · [Tabuleiro on-line](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=pt) · [Construção D10](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html?lang=pt)
 
-Baixe o [tabuleiro HTML independente](index.html) e abra-o no navegador, sem instalação. Escolha uma árvore e quem começa. Você pode clicar em um vértice, selecioná-lo com Tab e pressionar Enter ou Espaço, ou usar os botões de jogadas válidas. A partida é preservada ao alternar entre inglês e chinês.
+Baixe o [tabuleiro HTML independente](index.html) e abra-o no navegador, sem instalação. Escolha uma árvore e quem começa. Você pode clicar em um vértice, selecioná-lo com Tab e pressionar Enter ou Espaço, ou usar os botões de jogadas válidas. A partida é preservada ao trocar de idioma.
 
 Cada jogada cobre o vértice escolhido e seus vizinhos e deve cobrir pela primeira vez uma extremidade de uma aresta laranja. Um vértice já coberto ainda pode ser escolhido se satisfizer essa condição. Os contornos azuis indicam todas as jogadas ótimas de quem joga. O número em cada botão inclui aquela jogada e indica quantas restam se ambos jogarem de forma ótima.
 

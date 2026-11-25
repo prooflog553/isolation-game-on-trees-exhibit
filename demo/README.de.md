@@ -2,9 +2,9 @@
 
 [English](README.md) · [简体中文](README.zh-Hans.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
 
-[English](README.md) · [Deutsche Startseite](../README.de.md) · [Online-Spielbrett](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [D10-Konstruktion](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+[English](README.md) · [Deutsche Startseite](../README.de.md) · [Online-Spielbrett](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=de) · [D10-Konstruktion](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html?lang=de)
 
-Laden Sie das [eigenständige HTML-Spielbrett](index.html) herunter und öffnen Sie es ohne Installation im Browser. Wählen Sie einen Baum und den beginnenden Spieler. Knoten lassen sich anklicken, mit Tab fokussieren und mit Eingabe- oder Leertaste auswählen; alternativ gibt es Schaltflächen für zulässige Züge. Beim Wechsel zwischen Englisch und Chinesisch bleibt die Partie erhalten.
+Laden Sie das [eigenständige HTML-Spielbrett](index.html) herunter und öffnen Sie es ohne Installation im Browser. Wählen Sie einen Baum und den beginnenden Spieler. Knoten lassen sich anklicken, mit Tab fokussieren und mit Eingabe- oder Leertaste auswählen; alternativ gibt es Schaltflächen für zulässige Züge. Beim Sprachwechsel bleibt die Partie erhalten.
 
 Ein Zug überdeckt den gewählten Knoten und seine Nachbarn. Dabei muss mindestens ein Endknoten einer orangefarbenen Kante neu überdeckt werden. Ein bereits überdeckter Knoten darf gewählt werden, wenn diese Bedingung erfüllt ist. Blaue Umrandungen zeigen alle optimalen Züge der Partei am Zug. Die Zahl auf einer Zugschaltfläche zählt diesen Zug mit und gibt die verbleibende Zugzahl bei beiderseits optimalem Spiel an.
 

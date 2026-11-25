@@ -4,7 +4,7 @@
 
 **木の直径は、孤立化ゲームの長さをどこまで左右するのでしょうか。** ここで調べる上取整の上界には、直径 9 と 10 の間に明確な境界があります。
 
-[論文（PDF・英語）](manuscript/Isolation_Game_Research_Report.pdf) · [Lean のソースとビルド（英語）](formal/README.md) · [オンライン棋盤（英語・中国語）](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html)
+[論文（PDF・英語）](manuscript/Isolation_Game_Research_Report.pdf) · [Lean のソースとビルド（英語）](formal/README.md) · [オンライン棋盤](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=ja)
 
 ## 概要
 
@@ -43,7 +43,7 @@ D9 の検討では、7 頂点の道を加えると必ず 3 手以内の増加に
 
 - [論文全文（PDF・英語）](manuscript/Isolation_Game_Research_Report.pdf) · [証明の案内（英語）](EVIDENCE_MAP.md)
 - [研究の経緯（英語）](RESEARCH.md) · [再現手順（英語）](REPRODUCE.md) · [Lean のソースとビルド（英語）](formal/README.md)
-- [オンライン棋盤（英語・中国語）](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [D10 の構成（英語・中国語）](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+- [オンライン棋盤](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=ja) · [D10 の構成](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html?lang=ja)
 - [棋盤の使い方（日本語）](demo/README.ja.md)
 - [ライセンスと表示（英語）](LICENSE_SCOPE.md)
 

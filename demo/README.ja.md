@@ -2,9 +2,9 @@
 
 [English](README.md) · [简体中文](README.zh-Hans.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
 
-[English](README.md) · [日本語のトップページ](../README.ja.md) · [オンライン棋盤](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [D10 の構成](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+[English](README.md) · [日本語のトップページ](../README.ja.md) · [オンライン棋盤](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html?lang=ja) · [D10 の構成](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html?lang=ja)
 
-[単一の HTML 棋盤](index.html)をダウンロードし、ブラウザーで開けば、インストールせずに遊べます。木と先手を選び、頂点をクリックするか、Tab キーで頂点に移動して Enter またはスペースキーを押してください。合法手のボタンも使えます。英語と中国語を切り替えても棋局は保持されます。
+[単一の HTML 棋盤](index.html)をダウンロードし、ブラウザーで開けば、インストールせずに遊べます。木と先手を選び、頂点をクリックするか、Tab キーで頂点に移動して Enter またはスペースキーを押してください。合法手のボタンも使えます。言語を切り替えても棋局は保持されます。
 
 一手で選んだ頂点とその隣接頂点を覆います。その手は、オレンジ色の辺の少なくとも一端を新たに覆わなければなりません。条件を満たせば、すでに覆われた頂点も選べます。青い枠は手番側のすべての最善手を示します。合法手のボタンの数字は、その一手を含め、双方が最善を尽くした場合の残り手数です。
 
