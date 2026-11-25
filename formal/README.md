@@ -1,6 +1,6 @@
-# Lean source and replay / Lean 源码与复现
+# Lean source and replay
 
-[Full paper / 完整论文](../manuscript/Isolation_Game_Research_Report.pdf) · [Reproduction guide / 复现](../REPRODUCE.md) · [中文首页](../README.zh-Hans.md)
+[Full paper](../manuscript/Isolation_Game_Research_Report.pdf) · [Reproduction guide](../REPRODUCE.md) · [简体中文](README.zh-Hans.md)
 
 All four targets use **Lean 4.19.0**. The complete non-core build inputs for D9 and D10 comprise 1,566 and 1,006 modules respectively. D6 and D7 use locked Lake projects. The official precompiled Lean core is installed separately. The build results cited below are from the documented 25 November 2026 replay of these source bytes.
 
@@ -10,8 +10,6 @@ All four targets use **Lean 4.19.0**. The complete non-core build inputs for D9 
 | D7 | [Lake project ZIP](D7-L3.zip) · [audit source](D7/MainAudit.lean) | `IsolationGame.DiameterSeven.tree_diameter_seven_bound` |
 | D9 | [Main source](D9/FourteenDiameterNineClosure.lean) · [module crosswalk](D9/build-crosswalk.csv) · [D9/D10 source bundle](D9-D10-lean-sources.tar.xz) | `IsolationGame.FourteenDiameterNineClosure.diameter_nine_ordinary_ceil_formula` |
 | D10 | [Main source](D10/FinalDiameterCounterexample.lean) · [module crosswalk](D10/build-crosswalk.csv) · [D9/D10 source bundle](D9-D10-lean-sources.tar.xz) | `CounterexampleConcreteFinal.model_complete_counterexample` |
-
-中文读者可以直接下载四个结果的源码。从 D9 和 D10 的两个主文件可定位定理，完整源码包含传递依赖、逐模块哈希清单、主定理与公理检查脚本以及上游许可声明。
 
 The D9 entry preserves an early candidate-stage comment. The file's source hash matches the successful historical build in the public crosswalk. D9 applies to ordinary Dominator-start play, while D10 gives lower bounds for both starters. [Manuscript theorem scopes](../manuscript/SOURCES.md)
 

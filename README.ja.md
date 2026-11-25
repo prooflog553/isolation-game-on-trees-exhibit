@@ -27,11 +27,14 @@ Dominator が先手なら、直径 9 以下のどの木でも ⌈3n/7⌉ 手以�
 
 人が研究の方向を定めて批判的な検討を求め、AI が構成や議論を提案・修正しました。Python の再計算は個別例や有限証書を検査し、Lean は形式化された命題を検証します。残された研究記録には欠落もあります。
 
+D9 の検討では、7 頂点の道を加えると必ず 3 手以内の増加に収まる、という一般化が、事前に印を付けた森の反例で退けられました。この局所的な例は、初期状態が空の連結な木を扱う主定理とは区別する必要があります。D7 の形式化でも、補助グラフで印を付ける根の対応が修正され、小規模な場合の仮定が別途証明されました。
+
 ## 読む・試す・確かめる
 
 - [論文全文（PDF・英語）](manuscript/Isolation_Game_Research_Report.pdf) · [証明の案内（英語）](EVIDENCE_MAP.md)
 - [研究の経緯（英語）](RESEARCH.md) · [再現手順（英語）](REPRODUCE.md) · [Lean のソースとビルド（英語）](formal/README.md)
 - [オンライン棋盤（英語・中国語）](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [D10 の構成（英語・中国語）](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+- [棋盤の使い方（日本語）](demo/README.ja.md)
 - [ライセンスと表示（英語）](LICENSE_SCOPE.md)
 
 

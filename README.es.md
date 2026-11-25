@@ -29,11 +29,14 @@ La construcción de diámetro 10 reúne $14k$ módulos de 15 vértices conectand
 
 La persona responsable orientó la investigación y pidió revisiones críticas; los sistemas de IA propusieron y revisaron construcciones y argumentos. Las reconstrucciones en Python comprueban ejemplos y certificados finitos; Lean comprueba los enunciados formalizados. La historia documentada conserva lagunas.
 
+En D9, un contraejemplo en bosques premarcados descartó la regla general de que añadir un camino de siete vértices aumenta el valor como máximo en tres. Este ejemplo local debe distinguirse del teorema para árboles conexos inicialmente sin marcar. En D7 se corrigió además la correspondencia del vértice marcado en un grafo auxiliar y se demostraron por separado los casos pequeños antes asumidos.
+
 ## Para explorar y verificar
 
 - [Artículo completo (PDF, inglés)](manuscript/Isolation_Game_Research_Report.pdf) · [Mapa de pruebas (inglés)](EVIDENCE_MAP.md)
 - [Historia de la investigación (inglés)](RESEARCH.md) · [Instrucciones de reproducción (inglés)](REPRODUCE.md) · [Fuentes y compilaciones de Lean (inglés)](formal/README.md)
 - [Tablero interactivo (inglés/chino)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [Construcción D10 (inglés/chino)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+- [Guía del tablero (español)](demo/README.es.md)
 - [Licencias y avisos (inglés)](LICENSE_SCOPE.md)
 
 

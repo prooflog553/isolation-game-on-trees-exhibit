@@ -1,6 +1,6 @@
-# Sources and theorem scope / 文献与定理范围
+# Sources and theorem scope
 
-[Research report](Isolation_Game_Research_Report.pdf) · [Evidence map](../EVIDENCE_MAP.md)
+[Research report](Isolation_Game_Research_Report.pdf) · [Evidence map](../EVIDENCE_MAP.md) · [简体中文](SOURCES.zh-Hans.md)
 
 ## References
 

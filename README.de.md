@@ -29,11 +29,14 @@ Die Konstruktion mit Durchmesser 10 verbindet die Zentren von $14k$ Modulen mit 
 
 Der Mensch gab die Forschungsrichtung vor und verlangte kritische Prüfungen; KI-Systeme schlugen Konstruktionen und Argumente vor und überarbeiteten sie. Python prüft Beispiele und endliche Zertifikate; Lean prüft die formalisierten Aussagen. Die überlieferten Forschungsaufzeichnungen sind lückenhaft.
 
+Für D9 widerlegte ein Gegenbeispiel auf vormarkierten Wäldern die allgemeine Regel, dass ein zusätzlicher Pfad mit sieben Knoten den Wert um höchstens drei erhöht. Dieses lokale Beispiel ist vom Satz über zusammenhängende, anfangs unmarkierte Bäume zu unterscheiden. Bei D7 wurden außerdem die Zuordnung des markierten Knotens im Hilfsgraphen korrigiert und die zuvor vorausgesetzten kleinen Fälle gesondert bewiesen.
+
 ## Entdecken und überprüfen
 
 - [Vollständiger Aufsatz (PDF, Englisch)](manuscript/Isolation_Game_Research_Report.pdf) · [Beweisübersicht (Englisch)](EVIDENCE_MAP.md)
 - [Forschungsverlauf (Englisch)](RESEARCH.md) · [Anleitung zur Reproduktion (Englisch)](REPRODUCE.md) · [Lean-Quellen und Builds (Englisch)](formal/README.md)
 - [Interaktives Spielbrett (Englisch/Chinesisch)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [D10-Konstruktion (Englisch/Chinesisch)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+- [Anleitung zum Spielbrett (Deutsch)](demo/README.de.md)
 - [Lizenzen und Hinweise (Englisch)](LICENSE_SCOPE.md)
 
 

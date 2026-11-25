@@ -29,11 +29,14 @@ La construction de diamètre 10 relie en étoile les centres de $14k$ modules de
 
 La personne responsable a orienté la recherche et demandé des examens critiques ; les systèmes d'IA ont proposé et révisé constructions et arguments. Les calculs Python vérifient des exemples et des certificats finis ; Lean vérifie les énoncés formalisés. Les archives de la recherche comportent des lacunes.
 
+Pour D9, un contre-exemple sur des forêts prémarquées a écarté la règle générale selon laquelle ajouter un chemin de sept sommets augmente toujours la valeur d'au plus trois. Cet exemple local se distingue du théorème sur les arbres connexes initialement non marqués. Dans D7, la correspondance du sommet marqué d'un graphe auxiliaire a été corrigée et les petits cas, auparavant supposés, ont été démontrés séparément.
+
 ## Explorer et vérifier
 
 - [Article complet (PDF, anglais)](manuscript/Isolation_Game_Research_Report.pdf) · [Carte des preuves (anglais)](EVIDENCE_MAP.md)
 - [Histoire de la recherche (anglais)](RESEARCH.md) · [Guide de reproduction (anglais)](REPRODUCE.md) · [Sources et compilation Lean (anglais)](formal/README.md)
 - [Plateau interactif (anglais/chinois)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [Construction D10 (anglais/chinois)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+- [Mode d’emploi du plateau (français)](demo/README.fr.md)
 - [Licences et mentions (anglais)](LICENSE_SCOPE.md)
 
 

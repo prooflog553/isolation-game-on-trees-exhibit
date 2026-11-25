@@ -29,11 +29,14 @@ A construção de diâmetro 10 liga em estrela os centros de $14k$ módulos de 1
 
 A pessoa responsável orientou a pesquisa e solicitou revisões críticas; os sistemas de IA propuseram e revisaram construções e argumentos. Os programas em Python verificam exemplos e certificados finitos; o Lean verifica enunciados formalizados. Os registros de pesquisa disponíveis têm lacunas.
 
+Em D9, um contraexemplo em florestas pré-marcadas descartou a regra geral de que adicionar um caminho de sete vértices aumenta o valor em no máximo três. Esse exemplo local deve ser distinguido do teorema para árvores conexas inicialmente sem marca. Em D7, também se corrigiu a correspondência do vértice marcado em um grafo auxiliar e se demonstraram separadamente os casos pequenos antes assumidos.
+
 ## Explorar e verificar
 
 - [Artigo completo (PDF, inglês)](manuscript/Isolation_Game_Research_Report.pdf) · [Mapa das provas (inglês)](EVIDENCE_MAP.md)
 - [História da pesquisa (inglês)](RESEARCH.md) · [Guia de reprodução (inglês)](REPRODUCE.md) · [Fontes e compilação em Lean (inglês)](formal/README.md)
 - [Tabuleiro interativo (inglês/chinês)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [Construção D10 (inglês/chinês)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+- [Guia do tabuleiro (português)](demo/README.pt.md)
 - [Licenças e avisos (inglês)](LICENSE_SCOPE.md)
 
 
