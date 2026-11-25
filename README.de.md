@@ -2,9 +2,21 @@
 
 [English](README.md) · [简体中文](README.zh-Hans.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · **Deutsch** · [Português](README.pt.md)
 
-![Durchmesserschwelle zwischen 9 und 10](assets/diameter-threshold.svg)
+**Wie beeinflusst der Durchmesser eines Baumes die Dauer des Isolationsspiels?** Für die hier untersuchte aufgerundete Schranke liegt die entscheidende Grenze zwischen Durchmesser 9 und 10.
 
-**Wie viele Züge kann das Spiel auf einem Baum dauern?** Für die hier untersuchte Schranke macht der Schritt von Durchmesser 9 zu Durchmesser 10 den Unterschied.
+[Aufsatz (PDF, Englisch)](manuscript/Isolation_Game_Research_Report.pdf) · [Lean-Quellen und Builds (Englisch)](formal/README.md) · [Interaktives Spielbrett (Englisch/Chinesisch)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html)
+
+## Zusammenfassung
+
+Kann Dominator auf einem Baum mit $n$ Knoten als erster Spieler immer innerhalb von $\lceil3n/7\rceil$ Zügen beenden? Diese Arbeit beweist die Schranke für jeden endlichen Baum mit Durchmesser **höchstens 9**. Bei Durchmesser **10** konstruieren wir für jede positive ganze Zahl $k$ einen Baum mit $210k$ Knoten, der bei optimalem Spiel und unabhängig vom Startspieler mindestens $91k$ Züge erfordert; der aufgerundete Vergleichswert beträgt $90k$.
+
+Der Beweis der oberen Schranke verbindet strukturelle Reduktionen und endliche Zertifikate mit Strategien für 14 Familien, die beliebig viele gewöhnliche Zweige zulassen. Die untere Schranke beruht auf einer skalierbaren Modulkonstruktion und einer zugehörigen Strategie. Das Repository enthält den Aufsatz, formale Quellen, Nachrechnungen und interaktive Darstellungen.
+
+![Obere Schranke bis Durchmesser 9 und Gegenbeispielfamilie bei Durchmesser 10](assets/diameter-threshold.svg)
+
+## Ausgangspunkt
+
+Zunächst stand eine stärkere, abgerundete Schranke im Mittelpunkt. Ein kleines Beispiel widerlegt sie: Fügt man am Zentrum eines Baumes mit 22 Knoten ein Blatt hinzu, bleibt der Durchmesser 8, während der optimale D-Startwert von 9 auf 10 steigt. Für 23 Knoten ergibt Abrunden 9 und Aufrunden 10. Daraus entstand die Frage, bis zu welchem Durchmesser die aufgerundete Schranke gilt. [Literatur und Geltungsbereich der Sätze (Englisch)](manuscript/SOURCES.md)
 
 ## Spielregeln
 

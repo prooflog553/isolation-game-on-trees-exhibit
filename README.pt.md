@@ -2,9 +2,21 @@
 
 [English](README.md) · [简体中文](README.zh-Hans.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · **Português**
 
-![Limiar de diâmetro entre 9 e 10](assets/diameter-threshold.svg)
+**Como o diâmetro de uma árvore influencia a duração do jogo de isolamento?** Para a cota arredondada para cima estudada aqui, a mudança decisiva ocorre entre os diâmetros 9 e 10.
 
-**Quantas jogadas pode durar uma partida numa árvore?** Para o limite estudado aqui, a passagem do diâmetro 9 para o 10 muda a resposta.
+[Artigo (PDF, inglês)](manuscript/Isolation_Game_Research_Report.pdf) · [Fontes e compilação Lean (inglês)](formal/README.md) · [Tabuleiro interativo (inglês/chinês)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html)
+
+## Resumo
+
+Em uma árvore com $n$ vértices, Dominator, quando começa, consegue sempre terminar em no máximo $\lceil3n/7\rceil$ jogadas? Este trabalho demonstra a cota para toda árvore finita de diâmetro **no máximo 9**. No diâmetro **10**, para cada inteiro positivo $k$, construímos uma árvore de $210k$ vértices que exige pelo menos $91k$ jogadas sob jogo ótimo, independentemente de quem começa; a cota de referência é $90k$.
+
+A prova da cota superior combina reduções estruturais, certificados finitos e estratégias para 14 famílias com uma quantidade arbitrária de ramos comuns. A cota inferior usa uma construção modular extensível e uma estratégia correspondente. O repositório reúne o artigo, as fontes formais, as verificações e as apresentações interativas.
+
+![A cota até diâmetro 9 e a família de contraexemplos de diâmetro 10](assets/diameter-threshold.svg)
+
+## A origem da pergunta
+
+A pesquisa examinou primeiro uma cota mais forte, arredondada para baixo. Um exemplo a contradiz: acrescentar uma folha ao centro de uma árvore de 22 vértices mantém o diâmetro 8, mas eleva de 9 para 10 o valor quando Dominator começa. Para 23 vértices, o arredondamento para baixo dá 9 e o arredondamento para cima, 10. A pergunta passou a ser até qual diâmetro essa última cota é garantida. [Referências e alcance dos teoremas (inglês)](manuscript/SOURCES.md)
 
 ## Regras do jogo
 

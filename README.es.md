@@ -2,9 +2,21 @@
 
 [English](README.md) · [简体中文](README.zh-Hans.md) · [日本語](README.ja.md) · **Español** · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
 
-![Umbral de diámetro entre 9 y 10](assets/diameter-threshold.svg)
+**¿Cómo influye el diámetro de un árbol en la duración del juego de aislamiento?** Para la cota redondeada hacia arriba estudiada aquí, el cambio decisivo ocurre entre los diámetros 9 y 10.
 
-**¿Cuánto puede alargarse el juego en un árbol?** Para una cota concreta, el salto del diámetro 9 al 10 cambia la respuesta.
+[Artículo (PDF, inglés)](manuscript/Isolation_Game_Research_Report.pdf) · [Fuentes y compilación Lean (inglés)](formal/README.md) · [Tablero interactivo (inglés/chino)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html)
+
+## Resumen
+
+En un árbol de $n$ vértices, ¿puede Dominator, si empieza, terminar siempre en como máximo $\lceil3n/7\rceil$ jugadas? Este trabajo demuestra la cota para todo árbol finito de diámetro **a lo sumo 9**. En diámetro **10**, para cada entero positivo $k$, construimos un árbol de $210k$ vértices que requiere al menos $91k$ jugadas con juego óptimo, empiece quien empiece; su cota de referencia es $90k$.
+
+La prueba de la cota superior combina reducciones estructurales, certificados finitos y estrategias para 14 familias con un número arbitrario de ramas ordinarias. La cota inferior se obtiene mediante una construcción modular ampliable y una estrategia asociada. El repositorio reúne el artículo, las fuentes formales, las comprobaciones y las exhibiciones interactivas.
+
+![La cota hasta diámetro 9 y la familia de contraejemplos de diámetro 10](assets/diameter-threshold.svg)
+
+## El origen de la pregunta
+
+La investigación examinó primero una cota más fuerte, redondeada hacia abajo. Un ejemplo la contradice: añadir una hoja al centro de un árbol de 22 vértices mantiene su diámetro en 8, pero eleva el valor con Dominator primero de 9 a 10. Para 23 vértices, el redondeo hacia abajo da 9 y el redondeo hacia arriba, 10. El problema pasó a ser hasta qué diámetro se mantiene esta última cota. [Referencias y alcance (inglés)](manuscript/SOURCES.md)
 
 ## Cómo se juega
 

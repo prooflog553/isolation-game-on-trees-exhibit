@@ -1,38 +1,47 @@
-# 树上的隔离博弈
+# 树上的隔离博弈：从直径 9 到直径 10
 
 [English](README.md) · **简体中文** · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [项目网站](https://prooflog553.github.io/isolation-game-on-trees-exhibit/)
 
-**Dominator 先手时，上取整界对直径至多 9 的所有树成立。到了直径 10，一个无限反例族在两种先手下都超过这条界。**
+**一棵树有多“长”，会怎样影响一场隔离博弈的手数？** 对这里研究的上取整界，答案恰好藏在直径 9 与 10 之间。
 
-[**读完整论文 PDF**](manuscript/Isolation_Game_Research_Report.pdf) · [**看 Lean 源码与构建说明**](formal/README.zh-Hans.md) · [**在线玩一局**](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html)
+[**阅读论文 PDF**](manuscript/Isolation_Game_Research_Report.pdf) · [**查看 Lean 源码与构建**](formal/README.zh-Hans.md) · [**在线体验**](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html)
 
-[**了解 AI 的研究过程**](RESEARCH.zh-Hans.md) 从失败的中心首着讲起，经过一片叶子迫使改题、反例直径从 12 降到 10，最后补上 D9 证明的缺口。每个转折都附有复算或证明入口。
+## 摘要
 
-![上取整界的精确直径门槛，从 9 到 10](assets/diameter-threshold.svg)
+隔离博弈中，两名玩家轮流选择顶点；一方试图尽快结束游戏，另一方则尽量延长游戏。对于有 $n$ 个顶点的树，一个自然的问题是：先手的 Dominator 能否总在 $\lceil 3n/7\rceil$ 手内结束？本项目从树的**直径**出发研究这个问题，得到一条精确的直径分界。
 
-## 主要结果
+当直径至多为 **9** 时，任意有限树在 Dominator 先手下都满足这一上界。当直径为 **10** 时，对每个正整数 $k$，我们构造出一棵有 $210k$ 个顶点的树：无论哪一方先手，双方最优行棋都至少需要 $91k$ 手，而上取整基准仅为 $90k$。因此，反例不仅在直径 10 出现，超出基准的手数也至少随 $k$ 线性增长。
 
-| 结果 | 它说明什么 |
+上界证明结合结构归约、有限证书和覆盖任意多普通分支的 14 族策略；下界则来自可扩展的模块化构造及相应策略。仓库提供论文、形式化源码、复算程序和交互展示，供读者沿不同路径核验。
+
+![从直径 9 的上界到直径 10 的反例族](assets/diameter-threshold.svg)
+
+## 问题从哪里来
+
+在普通隔离博弈中，一手覆盖所选顶点和它的邻点；合法的一手必须新覆盖一条原本两端都未覆盖的边的至少一个端点。当所有边都至少有一端被覆盖时，游戏结束。Dominator 力求减少手数，Staller 力求增加手数。树的直径是其顶点间最远距离，按边数计算。
+
+已有研究提出了关于博弈手数的 $3n/7$ 型猜想。本项目最初也尝试研究更强的下取整界；但一个小例子迫使问题发生变化：给一棵 **22 点、直径为 8** 的树的中心添一片叶子，直径不变，Dominator 先手的最优手数却从 **9** 增至 **10**。对于 23 个顶点，下取整界是 9，上取整界是 10。研究于是转向：上取整界能保证到什么直径，又从哪里开始失效？[文献与定理范围](manuscript/SOURCES.zh-Hans.md) · [这棵树的复算](REPRODUCE.zh-Hans.md)
+
+## 结果与证明的范围
+
+| 结果 | 结论 |
 |---|---|
-| **确定精确的直径门槛** | 对任何一棵有 $n$ 个顶点、直径至多 9 的有限树，Dominator 先手可在 $\lceil3n/7\rceil$ 手内结束。 |
-| **构造超界幅度会增长的无限反例族** | 每个正整数 $k$ 都给出一棵 $210k$ 点、直径恰为 10 的树。两种先手都至少需要 $91k$ 手，上取整基准是 $90k$。 |
-| **找到改变研究方向的小反例** | 给一棵 22 点树添一片叶子，直径仍为 8，但 Dominator 先手值从 9 升到 10。23 点时下取整界为 9，上取整界为 10。 |
+| **直径至多 9** | 对每棵有 $n$ 个顶点的有限树，普通博弈从全未覆盖状态开始时，Dominator 先手可在 $\lceil3n/7\rceil$ 手内结束。本项目未证明相同上界适用于 Staller 先手。 |
+| **直径恰为 10** | 对每个正整数 $k$，存在一棵 $210k$ 点树，两种先手的博弈值都至少为 $91k$；该树的上取整基准为 $90k$。这里的 $91k$ 是下界，而非声称精确值。 |
+| **证明方法** | D9 通过结构归约和有限分类，将问题化到 14 个候选族，再为任意多条普通分支给出策略；D10 通过连接 15 点模块，构造无限反例族。 |
 
-## 这项工作的意义
+这两项结果共同确定：对于 Dominator 先手，上取整界在树上首次可能失效的直径是 **10**。D10 的下界还覆盖 Staller 先手；这并不意味着本项目同时解决了直径至多 9 时的 Staller 先手情形。[证明与证据导航](EVIDENCE_MAP.zh-Hans.md)
 
-**它解释了上取整猜想在树上最早从哪里失效。** 直径 9 的证明把无限范围的问题拆成可穷尽的局部证书，以及覆盖任意多普通分支的 14 族策略。直径 10 的构造则给出可扩展的失败机制，超出基准的手数至少随 $k$ 线性增长。
+## 从哪里开始
 
-读者可以在棋盘上试失败的开局，用 Python 核验精确值，再从论文和 Lean 查看一般定理。研究记录同时交代人何时要求查错或批准改题，AI 提出了哪些构造和修订。
-
-## 阅读、体验与复现
-
-| 想做什么 | 入口 |
+| 如果你想…… | 可以查看 |
 |---|---|
-| **读论文与证明** | [完整论文 PDF](manuscript/Isolation_Game_Research_Report.pdf) · [D9 实例和证明导航](EVIDENCE_MAP.zh-Hans.md) · [文献与定理范围](manuscript/SOURCES.zh-Hans.md) |
-| **看 Lean 代码** | [D6、D7、D9、D10 源码包和构建说明](formal/README.zh-Hans.md) · [D9 主证明文件](formal/D9/FourteenDiameterNineClosure.lean) · [D10 主定理文件](formal/D10/FinalDiameterCounterexample.lean) |
-| **体验游戏与构造** | [在线棋盘与最优策略](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [D10 可缩放构造](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html) · [离线使用说明](demo/README.zh-Hans.md) |
-| **自行跑程序** | [Python 案例与有限证书](REPRODUCE.zh-Hans.md) |
+| **阅读证明** | [论文全文](manuscript/Isolation_Game_Research_Report.pdf) · [证明导航与 D9 实例](EVIDENCE_MAP.zh-Hans.md) · [文献和定理对照](manuscript/SOURCES.zh-Hans.md) |
+| **检查形式化结果** | [D6、D7、D9、D10 的 Lean 源码与构建说明](formal/README.zh-Hans.md) |
+| **尝试例子** | [在线棋盘](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [可缩放的 D10 构造](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html) · [棋盘使用说明](demo/README.zh-Hans.md) |
+| **独立复算** | [Python 案例、有限证书和复现步骤](REPRODUCE.zh-Hans.md) |
+| **了解研究过程** | [AI 如何解题：失败的开局、反例与证明修订](RESEARCH.zh-Hans.md) |
 
-每手覆盖所选点和它的邻点，且须新覆盖一条原本两端都未覆盖的边的端点。Dominator 尽快结束，Staller 尽量拖长。在五点路径上先选 **2** 再选 **3**，即可验证已覆盖的顶点何时还能走。
+例如，在五点路径 $1—2—3—4—5$ 上先选择 **2**，再选择已经被覆盖的 **3**，就能看到：已覆盖的顶点在满足合法着条件时仍然可以选择。
 
-档案整理与维护由岑弈（Cen Yi）负责。[逐材料权利与许可](LICENSE_SCOPE.md)
+档案整理与维护：岑弈（Cen Yi）。[逐材料权利与许可](LICENSE_SCOPE.md)

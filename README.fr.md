@@ -2,9 +2,21 @@
 
 [English](README.md) · [简体中文](README.zh-Hans.md) · [日本語](README.ja.md) · [Español](README.es.md) · **Français** · [Deutsch](README.de.md) · [Português](README.pt.md)
 
-![Seuil entre les diamètres 9 et 10](assets/diameter-threshold.svg)
+**Comment le diamètre d’un arbre influence-t-il la durée du jeu d’isolement ?** Pour la borne arrondie à l’entier supérieur étudiée ici, le changement décisif se situe entre les diamètres 9 et 10.
 
-**Combien de coups peut durer une partie sur un arbre ?** Pour la borne considérée ici, le passage du diamètre 9 au diamètre 10 change la réponse.
+[Article (PDF, anglais)](manuscript/Isolation_Game_Research_Report.pdf) · [Sources et compilation Lean (anglais)](formal/README.md) · [Plateau interactif (anglais/chinois)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html)
+
+## Résumé
+
+Sur un arbre à $n$ sommets, Dominator, lorsqu’il commence, peut-il toujours terminer en au plus $\lceil3n/7\rceil$ coups ? Ce travail établit cette borne pour tout arbre fini de diamètre **au plus 9**. Au diamètre **10**, pour tout entier positif $k$, nous construisons un arbre à $210k$ sommets qui exige au moins $91k$ coups en jeu optimal, quel que soit le premier joueur ; la borne de référence vaut $90k$.
+
+La preuve de la borne supérieure associe des réductions structurelles, des certificats finis et des stratégies pour 14 familles comportant un nombre arbitraire de branches ordinaires. La borne inférieure repose sur une construction modulaire extensible et une stratégie correspondante. Le dépôt rassemble l’article, les sources formelles, les calculs de vérification et les présentations interactives.
+
+![La borne jusqu’au diamètre 9 et les contre-exemples de diamètre 10](assets/diameter-threshold.svg)
+
+## À l’origine de la question
+
+La recherche portait d’abord sur une borne plus forte, arrondie à l’entier inférieur. Un exemple la contredit : ajouter une feuille au centre d’un arbre à 22 sommets conserve son diamètre 8, mais porte de 9 à 10 sa valeur lorsque Dominator commence. Pour 23 sommets, l’arrondi inférieur vaut 9 et l’arrondi supérieur 10. La question est alors devenue : jusqu’à quel diamètre cette dernière borne est-elle garantie ? [Références et portée des théorèmes (anglais)](manuscript/SOURCES.md)
 
 ## Règles du jeu
 
