@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="树上的隔离博弈。完整论文、Lean 源码和可玩的交互展示。">
+  <title>树上的隔离博弈 · Isolation Game on Trees</title>
+  <style>
+    :root { color-scheme: light; background:#f6f6ee; color:#18382e; font: 1rem/1.65 system-ui, sans-serif; }
+    * { box-sizing:border-box; }
+    body { margin:0; }
+    header, main, footer { max-width:73rem; padding:0 clamp(1rem,4vw,3.5rem); margin:auto; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-top:1.2rem; padding-bottom:1rem; border-bottom:1px solid #dbded1; }
+    header a { font-weight:650; }
+    a { color:#145641; text-underline-offset:.22em; }
+    a:hover { color:#8d421f; }
+    a:focus-visible { outline:3px solid #1e6983; outline-offset:4px; }
+    .identity { display:flex; gap:.9rem; flex-wrap:wrap; }
+    .hero { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.85fr); gap:clamp(1.8rem,5vw,4rem); align-items:center; padding:clamp(2.5rem,8vw,6rem) 0 3rem; }
+    h1 { margin:0 0 1rem; font:550 clamp(2.6rem,6vw,5.3rem)/1.04 Georgia,"Songti SC","Noto Serif SC",serif; letter-spacing:-.035em; }
+    .lead { margin:0; max-width:35rem; color:#3e5b50; font-size:clamp(1.02rem,2vw,1.23rem); }
+    .actions { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.6rem; }
+    .actions a { background:#fffef7; border:1px solid #99a99d; border-radius:.48rem; padding:.62rem 1rem; font-weight:660; text-decoration:none; }
+    .actions a:first-child { background:#215b46; border-color:#215b46; color:#fff; }
+    .actions a:hover { background:#e8ecdf; color:#18382e; }
+    figure { margin:0; }
+    figure img { display:block; width:100%; height:auto; }
+    figcaption { margin:.65rem 0 0; font-size:.93rem; color:#3e5b50; }
+    .body { border-top:1px solid #d9dfd2; padding:2rem 0 2.6rem; }
+    .body h2 { margin:0; font:500 clamp(1.6rem,3vw,2.2rem)/1.18 Georgia,serif; }
+    .contributions { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin:1.2rem 0; }
+    article { background:#fffef7; padding:1.1rem; border-radius:.6rem; border:1px solid #d9dfd2; }
+    article h3 { margin:0 0 .4rem; font-size:1.06rem; }
+    article p { margin:0; color:#3e5b50; }
+    footer { border-top:1px solid #d9dfd2; padding-top:1rem; padding-bottom:1.5rem; color:#3e5b50; }
+    @media (max-width:52rem) { .hero, .contributions { grid-template-columns:1fr; } .hero { padding-bottom:2rem; } }
+    @media (max-width:25rem) { .actions a { width:100%; text-align:center; } }
+  </style>
+</head>
+<body>
+<header>
+  <span data-en="A playable mathematics exhibit">可操作的数学展示</span>
+  <nav class="identity" aria-label="Language and repository">
+    <a href="?lang=zh" hreflang="zh-Hans" lang="zh-Hans">中文</a><a href="?lang=en" hreflang="en" lang="en">English</a>
+    <a href="https://github.com/prooflog553/isolation-game-on-trees-exhibit">GitHub</a>
+  </nav>
+</header>
+<main>
+  <section class="hero" aria-labelledby="title">
+    <div>
+      <h1 id="title" data-en="Isolation Game on Trees">树上的隔离博弈</h1>
+      <p class="lead" data-en="Dominator’s rounded upper bound holds through diameter 9. At diameter 10, an infinite family breaks it for either starting player.">Dominator 先手的上取整界对直径至多 9 的树成立。到直径 10，一个无限反例族在两种先手下都突破这条界。</p>
+      <nav class="actions" aria-label="Paper, Lean and game">
+        <a href="manuscript/Isolation_Game_Research_Report.pdf" data-en="Full paper (PDF)">完整论文 PDF</a>
+        <a href="https://github.com/prooflog553/isolation-game-on-trees-exhibit/tree/main/formal" data-en="Lean source and builds">Lean 源码与构建</a>
+        <a href="demo/index.html" data-en="Play the game">在线玩一局</a>
+      </nav>
+    </div>
+    <figure>
+      <img src="assets/diameter-threshold.svg" alt="舍入界在直径 9 到 10 的变化" width="1040" height="320">
+      <figcaption data-en="For every positive integer k, the diameter-10 tree has 210k vertices and requires at least 91k moves. The rounded benchmark is 90k.">每个正整数 k 给出一棵 210k 点的直径 10 树，两种先手都至少需要 91k 手，上取整基准是 90k。</figcaption>
+    </figure>
+  </section>
+  <section class="body" aria-labelledby="significance">
+    <h2 id="significance" data-en="What the work establishes">这项工作做成了什么</h2>
+    <div class="contributions">
+      <article><h3 data-en="An exact diameter threshold">精确的直径门槛</h3><p data-en="The theorem covers every finite tree through diameter 9 for Dominator starts. At diameter 10 the counterexample gap can grow indefinitely.">定理覆盖直径至多 9 的所有有限树。到直径 10，反例超过上取整界的幅度可随规模增长。</p></article>
+      <article><h3 data-en="A proof for unbounded trees">覆盖无界规模的一般证明</h3><p data-en="Finite checks handle the exceptional cases. Strategies for 14 families account for arbitrarily many ordinary branches.">有限证书处理局部状态，14 族策略处理任意多普通分支。源码、检查器和一般证明都可以查看。</p></article>
+      <article><h3 data-en="An inspectable research process">可以复查的研究过程</h3><p data-en="Replay the failed center opening, verify the one-leaf counterexample, or build all four Lean targets from pinned inputs.">可以重现中心首着失败，复算一片叶子的反例，或用固定输入重建四个 Lean 目标。</p></article>
+    </div>
+    <a href="demo/d10.html" data-en="Explore the D10 construction">查看可缩放的 D10 构造</a> · <a href="https://github.com/prooflog553/isolation-game-on-trees-exhibit/blob/main/RESEARCH.md" data-en="Read the research process">阅读研究过程和失败记录</a>
+  </section>
+</main>
+<footer data-en="Archive curation and maintenance by Cen Yi (岑弈).">档案整理与维护由岑弈（Cen Yi）负责。</footer>
+<script>
+  if (new URLSearchParams(location.search).get('lang') === 'en') {
+    document.documentElement.lang = 'en';
+    document.querySelectorAll('[data-en]').forEach(node => { node.textContent = node.dataset.en; });
+    document.querySelector('figure img').alt = 'The rounded bound changes at diameter 9 to 10';
+  }
+</script>
+</body>
+</html>

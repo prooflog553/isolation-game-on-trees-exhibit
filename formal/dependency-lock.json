@@ -1,0 +1,77 @@
+[
+  {
+    "kind": "toolchain",
+    "url": "https://github.com/leanprover/lean4/releases/download/v4.19.0/lean-4.19.0-linux.tar.zst",
+    "archive_relative_path": "toolchain/lean-4.19.0-linux.tar.zst",
+    "archive_sha256": "6fe3ce97a58f44e2b3567d455b994eacec5bfe9ae7774f2a573444480ba813fe"
+  },
+  {
+    "kind": "source",
+    "url": "https://github.com/leanprover-community/mathlib4/archive/refs/tags/v4.19.0.tar.gz",
+    "archive_relative_path": "third_party_recovery/mathlib4-v4.19.0.tar.gz",
+    "archive_sha256": "fd6bd32a498dcf50a28df78270838ae7b995f25cbd03beec4b3b79f31c3df550",
+    "extract_relative_path": "third_party_recovery"
+  },
+  {
+    "kind": "source",
+    "url": "https://github.com/leanprover-community/plausible/archive/77e08eddc486491d7b9e470926b3dbe50319451a.tar.gz",
+    "archive_relative_path": "third_party_recovery/plausible.tar.gz",
+    "archive_sha256": "91d72e812d5364e8f9ca10b4cda705346f44f14e82fda023b25e68881895b772",
+    "extract_relative_path": "third_party_recovery/plausible"
+  },
+  {
+    "kind": "source",
+    "url": "https://github.com/leanprover-community/LeanSearchClient/archive/25078369972d295301f5a1e53c3e5850cf6d9d4c.tar.gz",
+    "archive_relative_path": "third_party_recovery/LeanSearchClient.tar.gz",
+    "archive_sha256": "450e9a9494fadaab844f71de7663cedf7a18c02a441648efc15eed4ffe9cb949",
+    "extract_relative_path": "third_party_recovery/LeanSearchClient"
+  },
+  {
+    "kind": "source",
+    "url": "https://github.com/leanprover-community/import-graph/archive/e6a9f0f5ee3ccf7443a0070f92b62f8db12ae82b.tar.gz",
+    "archive_relative_path": "third_party_recovery/importGraph.tar.gz",
+    "archive_sha256": "4a57246f0cead0de9383260f54341c4175062cbc12039d3d19d4b7470dc5dea4",
+    "extract_relative_path": "third_party_recovery/importGraph"
+  },
+  {
+    "kind": "source",
+    "url": "https://github.com/leanprover-community/ProofWidgets4/archive/c4919189477c3221e6a204008998b0d724f49904.tar.gz",
+    "archive_relative_path": "third_party_recovery/proofwidgets.tar.gz",
+    "archive_sha256": "1a871906b225b6f02962e4e0f77536eb56d71c9988cf0a1c727fa7b93d3dfc63",
+    "extract_relative_path": "third_party_recovery/proofwidgets"
+  },
+  {
+    "kind": "source",
+    "url": "https://github.com/leanprover-community/aesop/archive/5d50b08dedd7d69b3d9b3176e0d58a23af228884.tar.gz",
+    "archive_relative_path": "third_party_recovery/aesop.tar.gz",
+    "archive_sha256": "01701770d7dbc11792ef329c67492bf5d472a46c72219911c959049e6331d34f",
+    "extract_relative_path": "third_party_recovery/aesop"
+  },
+  {
+    "kind": "source",
+    "url": "https://github.com/leanprover-community/quote4/archive/fa4f7f15d97591a9cf3aa7724ba371c7fc6dda02.tar.gz",
+    "archive_relative_path": "third_party_recovery/Qq.tar.gz",
+    "archive_sha256": "bd7ac49fdc62dfc23af3cb2c8be5dd14fceff3553375dcfcb3a6e3b0e7b3b75b",
+    "extract_relative_path": "third_party_recovery/Qq"
+  },
+  {
+    "kind": "source",
+    "url": "https://github.com/leanprover-community/batteries/archive/f5d04a9c4973d401c8c92500711518f7c656f034.tar.gz",
+    "archive_relative_path": "third_party_recovery/batteries.tar.gz",
+    "archive_sha256": "cc864d6e653231cbe8874cbff5459845e293b2d17741b7ee473b970808242732",
+    "extract_relative_path": "third_party_recovery/batteries"
+  },
+  {
+    "kind": "source",
+    "url": "https://github.com/leanprover/lean4-cli/archive/02dbd02bc00ec4916e99b04b2245b30200e200d0.tar.gz",
+    "archive_relative_path": "third_party_recovery/Cli.tar.gz",
+    "archive_sha256": "effde04639cf71aee8172ba06b12d6b953b1e6ce90660c28f7f09ad98c4b717c",
+    "extract_relative_path": "third_party_recovery/Cli"
+  },
+  {
+    "kind": "js_resources",
+    "url": "https://github.com/leanprover-community/ProofWidgets4/releases/download/v0.0.57/ProofWidgets4.tar.gz",
+    "archive_relative_path": "third_party_recovery/ProofWidgets4-assets.tar.gz",
+    "archive_sha256": "fc6fa33a1272b7e2ec38a2b6427ea7645557e79a9338828ace91bf7403449f8e"
+  }
+]

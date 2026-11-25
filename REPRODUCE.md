@@ -28,6 +28,8 @@ The first verifier checks 2,745 reachable local states and 5,340 classification 
 
 ## Open the browser exhibits / 打开交互演示
 
-After extraction, open `demo/index.html` for the [playable board](demo/README.md) or `demo/d10.html` for the [D10 diagram](demo/d10.html). Both run locally in the browser.
+Try the [online board](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) or the [interactive D10 diagram](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html). After extracting the repository ZIP, both HTML files can also run locally. [Offline steps](demo/README.md)
 
-The public [SHA-256 manifest](SHA256SUMS.txt) lists the other files in this release. The distributed certificates can be rerun as above. Complete Lean source and build records remain in the private research archive. The public [sources table](manuscript/SOURCES.md) records the scope of the four checked endpoints.
+## Rebuild Lean / 重建 Lean
+
+Use the [public Lean companion](formal/README.md) for four source targets, the Lean 4.19.0 toolchain, full theorem checks and D9/D10 build crosswalks. The [sources table](manuscript/SOURCES.md) records the mathematical scope of each endpoint. The [SHA-256 manifest](SHA256SUMS.txt) lists the other files in the current repository release.

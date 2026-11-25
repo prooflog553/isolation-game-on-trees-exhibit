@@ -1,25 +1,36 @@
 # 树上的隔离博弈
 
-[English](README.md) · **简体中文**
+[English](README.md) · **简体中文** · [项目网站](https://prooflog553.github.io/isolation-game-on-trees-exhibit/)
 
-在树上玩隔离博弈，Staller 最多能把对局拖多长？Dominator 先手时，直径至多 9 的树满足 $3n/7$ 的上取整界。到了直径 10，有一个无限反例族在两种先手下都超过这条界。
+**Dominator 先手时，上取整界对直径至多 9 的所有树成立。到了直径 10，一个无限反例族在两种先手下都超过这条界。**
 
-## 五分钟入门
+[**读完整论文 PDF**](manuscript/Isolation_Game_Research_Report.pdf) · [**看 Lean 源码与构建说明**](formal/README.md) · [**在线玩一局**](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html)
 
-| 从这里开始 | 可以看到什么 |
+![上取整界的精确直径门槛，从 9 到 10](assets/diameter-threshold.svg)
+
+## 我们做成了什么
+
+| 结果 | 它说明什么 |
 |---|---|
-| [亲手玩一局](demo/README.md) | 下载单文件棋盘，选先手，查看当前一方的全部最优着 |
-| [看证明中的树](EVIDENCE_MAP.md) | 一棵具体的 D9 证明案例和可缩放的 D10 构造 |
-| [读研究报告](manuscript/Isolation_Game_Research_Report.pdf) | 数学证明及[原始文献对照](manuscript/SOURCES.md) |
-| [自行复算](REPRODUCE.md) | 用 Python 跑案例和有限证书 |
-| [看研究怎样推进](RESEARCH.md) | 失效的策略、反例和证明修补 |
+| **确定精确的直径门槛** | 对任何一棵有 $n$ 个顶点、直径至多 9 的有限树，Dominator 先手可在 $\lceil3n/7\rceil$ 手内结束。 |
+| **构造超界幅度会增长的无限反例族** | 每个正整数 $k$ 都给出一棵 $210k$ 点、直径恰为 10 的树。两种先手都至少需要 $91k$ 手，上取整基准是 $90k$。 |
+| **找到改变研究方向的小反例** | 给一棵 22 点树添一片叶子，直径仍为 8，但 Dominator 先手值从 9 升到 10。23 点时下取整界为 9，上取整界为 10。 |
 
-## 怎么玩
+## 这项工作有什么意义
 
-两人轮流选点，每手覆盖所选点和它的邻点。一手合法，当且仅当它新覆盖了某条原本两端都未覆盖的边的至少一个端点。这样的边全部消失时，游戏结束。Dominator 希望尽快结束，Staller 希望延长对局。
+**它解释了上取整猜想在树上最早从哪里失效。** 直径 9 的证明把无限范围的问题拆成可穷尽的局部证书，以及覆盖任意多普通分支的 14 族策略。直径 10 的构造则给出可扩展的失败机制，超出基准的手数至少随 $k$ 线性增长。
 
-在 `1—2—3—4—5` 上先选 **2**，只剩 **4—5** 两端都未覆盖。接着选已经覆盖的 **3**，就能覆盖 **4** 并结束对局。[到棋盘试这两步](demo/README.md)
+这也是一个能亲自核验的 AI 数学研究案例。可以在棋盘上试失败的中心首着，用 Python 重跑添叶反例，再查看 Lean 怎样核验一般定理。研究记录保留了失败、反例和修正。[研究过程与失败记录](RESEARCH.md)
 
-树的直径是任意两点间的最大距离，以边数计算。对每个正整数 $k$，直径 10 的构造有 $210k$ 个顶点，两种先手在双方最优时都至少走 $91k$ 手，上取整基准为 $90k$。[查看构造](demo/d10.html)
+## 阅读、体验与复现
+
+| 想做什么 | 入口 |
+|---|---|
+| **读论文与证明** | [完整论文 PDF](manuscript/Isolation_Game_Research_Report.pdf) · [D9 实例和证明导航](EVIDENCE_MAP.md) · [文献与定理范围](manuscript/SOURCES.md) |
+| **看 Lean 代码** | [D6、D7、D9、D10 源码包和构建说明](formal/README.md) · [D9 主证明文件](formal/D9/FourteenDiameterNineClosure.lean) · [D10 主定理文件](formal/D10/FinalDiameterCounterexample.lean) |
+| **体验游戏与构造** | [在线棋盘与最优策略](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [D10 可缩放构造](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html) · [离线使用说明](demo/README.md) |
+| **自行跑程序** | [Python 案例与有限证书](REPRODUCE.md) |
+
+每手覆盖所选点和它的邻点，且须新覆盖一条原本两端都未覆盖的边的端点。Dominator 尽快结束，Staller 尽量拖长。在五点路径上先选 **2** 再选 **3**，即可验证已覆盖的顶点何时还能走。
 
 档案整理与维护由岑弈（Cen Yi）负责。[逐材料权利与许可](LICENSE_SCOPE.md)

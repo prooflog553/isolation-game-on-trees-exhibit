@@ -14,13 +14,13 @@
 
 ## Project results and verified Lean endpoints
 
-All rows concern finite simple trees with empty initial marks and history. Complete Lean build inputs and records remain in the private research archive.
+All rows concern finite simple trees with empty initial marks and history. The [Lean companion](../formal/README.md) provides the four build inputs, theorem checks and module crosswalks.
 
 | Result | Claim | Checked endpoint |
 |---|---|---|
 | D6 | With $n\ge3$ and diameter at most 6, the D-start value is at most $\lfloor(2n+1)/5\rfloor\le3n/7$. | `IsolationGame.tree_diameter_six_bound` |
 | D7 | With $n\ge3$ and diameter at most 7, the D-start value is at most $\lfloor3n/7\rfloor$. | `IsolationGame.DiameterSeven.tree_diameter_seven_bound` |
-| D9 | With diameter at most 9, the D-start value is at most $\lceil3n/7\rceil$. | `IsolationGame.FourteenDiameterNineClosure.diameter_nine_ordinary_ceil_formula` and `actual_empty_marks_and_history`. [Report Theorem 0.1](Isolation_Game_Research_Report.pdf#page=3) |
-| D10 | For every $k\ge1$, a tree has diameter 10, order $210k$, and both values at least $91k$. Its ceiling benchmark is $90k$. | `CounterexampleConcreteFinal.model_complete_counterexample`. [Appendix B](Isolation_Game_Research_Report.pdf#page=58) |
+| D9 | With diameter at most 9, the D-start value is at most $\lceil3n/7\rceil$. | `IsolationGame.FourteenDiameterNineClosure.diameter_nine_ordinary_ceil_formula` and `actual_empty_marks_and_history`. [Report Theorem 0.1](Isolation_Game_Research_Report.pdf#page=4) |
+| D10 | For every $k\ge1$, a tree has diameter 10, order $210k$, and both values at least $91k$. Its ceiling benchmark is $90k$. | `CounterexampleConcreteFinal.model_complete_counterexample`. [Appendix B](Isolation_Game_Research_Report.pdf#page=59) |
 
 D6 and D7 establish the unrounded tree bound within their diameter ranges. The D8 example separates the floor and ceiling bounds. D9 and D10 together identify the first diameter at which the rounded D-start bound can fail. D10 refutes the ceiling conjecture in [1] and [2] for both starters and the tree conjecture in [2] for Dominator starts. Its trees have leaves, so the minimum-degree-two conjecture falls outside this construction's scope.

@@ -1,5 +1,7 @@
 # Play the isolation game / 体验隔离博弈
 
+[Play online / 在线玩一局](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [D10 diagram / 构造图解](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+
 Download [the self-contained HTML board](index.html) and open it in a browser. Select a tree and a starting player. The language selector keeps your current game. You can click a vertex, focus it and press Enter or Space, or use the legal-move buttons.
 
 下载[单文件棋盘](index.html)后用浏览器打开，无需安装。选择树和先手。切换中英文会保留棋局。可以点击顶点，用 Tab 聚焦后按 Enter 或空格，也可以使用合法着按钮。

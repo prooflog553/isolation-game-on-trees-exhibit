@@ -1,25 +1,36 @@
 # Isolation Game on Trees
 
-**English** · [简体中文](README.zh-Hans.md)
+**English** · [简体中文](README.zh-Hans.md) · [Project website](https://prooflog553.github.io/isolation-game-on-trees-exhibit/?lang=en)
 
-How long can Staller keep an isolation game going on a tree? When Dominator starts, the ceiling of $3n/7$ bounds the game through diameter 9. At diameter 10, an infinite family exceeds that ceiling for either starter.
+**The rounded upper bound holds for Dominator-start play on every tree through diameter 9. An infinite family breaks it at diameter 10 for either starting player.**
 
-## A five-minute introduction
+[**Full paper (PDF)**](manuscript/Isolation_Game_Research_Report.pdf) · [**Lean source and builds**](formal/README.md) · [**Play online**](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html)
 
-| Start here | What you will find |
+![The diameter threshold from 9 to 10](assets/diameter-threshold.svg)
+
+## What we established
+
+| Result | What it says |
 |---|---|
-| [Play the game](demo/README.md) | Download the browser board, choose either starter, and see the optimal moves |
-| [See the graphs behind the proofs](EVIDENCE_MAP.md) | A concrete D9 proof case and a zoomable D10 construction |
-| [Read the report](manuscript/Isolation_Game_Research_Report.pdf) | The mathematical arguments and [published references](manuscript/SOURCES.md) |
-| [Reproduce the calculations](REPRODUCE.md) | Python replays and finite certificates |
-| [Follow the research](RESEARCH.md) | Failed strategies, counterexamples and proof repairs |
+| **Exact diameter threshold** | On every finite tree of order $n$ and diameter at most 9, Dominator can finish in at most $\lceil3n/7\rceil$ moves when starting. |
+| **Infinite obstruction with a growing gap** | For each positive integer $k$, a diameter-10 tree on $210k$ vertices requires at least $91k$ moves for either starter under optimal play. The conjectured ceiling is $90k$. |
+| **A small example that changed the question** | Adding one leaf preserves diameter 8 and raises the D-start value from 9 to 10. At 23 vertices the floor is 9 and the ceiling is 10. |
 
-## How to play
+## Why it matters
 
-Players take turns choosing a vertex. Each move covers that vertex and its neighbors. A move is legal if it newly covers an endpoint of an edge whose two endpoints were uncovered. The game ends when there are no such edges. Dominator tries to finish quickly and Staller tries to prolong play.
+The result pinpoints **where the rounded conjecture first fails on trees**. At the boundary, the counterexample gap grows by at least $k$. The upper-bound proof shows how to use finite certificates in an unbounded minimax problem. Structural reductions limit the exceptional branches, while strategies for 14 families handle arbitrarily many ordinary branches.
 
-On `1—2—3—4—5`, choose **2**. The only edge with both ends uncovered is now **4—5**. Choose **3**, which is already covered, to cover **4** and finish the game. [Try it on the board](demo/README.md)
+The exhibit makes the AI-led research inspectable. Readers can replay the failed center opening, reproduce the one-leaf counterexample, and inspect the Lean proof endpoints. [Research process and failed attempts](RESEARCH.md)
 
-A tree's diameter is its greatest distance between vertices, measured in edges. For every positive integer $k$, the diameter-10 construction has $210k$ vertices and requires at least $91k$ moves under optimal play for each starter. Its rounded benchmark is $90k$. [See the construction](demo/d10.html)
+## Explore and reproduce
+
+| Start here | What to open |
+|---|---|
+| **Paper and proof map** | [Full paper (PDF)](manuscript/Isolation_Game_Research_Report.pdf) · [Proof map and D9 example](EVIDENCE_MAP.md) · [References and theorem scope](manuscript/SOURCES.md) |
+| **Formal verification** | [D6, D7, D9 and D10 source and builds](formal/README.md) · [D9 main Lean file](formal/D9/FourteenDiameterNineClosure.lean) · [D10 main Lean file](formal/D10/FinalDiameterCounterexample.lean) |
+| **Interactive exhibits** | [Online board](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [Zoomable D10 construction](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html) · [Offline instructions](demo/README.md) |
+| **Independent checks** | [Run the Python replays and finite certificates](REPRODUCE.md) |
+
+Each turn covers the chosen vertex and its neighbors. A move must newly cover an endpoint of an edge with two uncovered endpoints. Dominator wants to finish quickly, and Staller wants to prolong play. On the five-vertex path, choose **2** then **3** to see when an already covered vertex can still be played.
 
 Archive curation and maintenance by Cen Yi (岑弈). [Material-specific rights and notices](LICENSE_SCOPE.md)

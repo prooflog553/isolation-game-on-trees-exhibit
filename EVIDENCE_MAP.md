@@ -2,14 +2,14 @@
 
 [English home](README.md) · [中文首页](README.zh-Hans.md) · [Python and certificates / 复算](REPRODUCE.md)
 
-The report links below use the PDF page numbers of the 71-page reading edition. The results concern the ordinary game with no vertices covered at the start.
+The links below use the PDF page numbers of the 72-page public reading edition. The results concern the ordinary game with no vertices covered at the start. [Full paper](manuscript/Isolation_Game_Research_Report.pdf) · [Lean sources and build instructions](formal/README.md)
 
 | Result / 结论 | Where to read or test / 核验入口 |
 |---|---|
 | D6 and D7 establish the unrounded Dominator-start bound for trees of order at least 3 in their respective diameter ranges. | [Statement and literature crosswalk](manuscript/SOURCES.md) |
 | D8 has a 23-vertex counterexample to the unrounded bound. | [Exact figure](assets/d8-one-leaf.svg) · [Python replay](REPRODUCE.md) |
-| Through diameter 9, Dominator can finish within $\lceil3n/7\rceil$ moves when starting. | [Theorem 0.1](manuscript/Isolation_Game_Research_Report.pdf#page=3) · [Chapter 12](manuscript/Isolation_Game_Research_Report.pdf#page=53) |
-| At diameter 10, both starters can exceed the ceiling for infinitely many orders. | [Appendix B](manuscript/Isolation_Game_Research_Report.pdf#page=58) · [Zoomable construction](demo/d10.html) |
+| Through diameter 9, Dominator can finish within $\lceil3n/7\rceil$ moves when starting. | [Theorem 0.1](manuscript/Isolation_Game_Research_Report.pdf#page=4) · [Chapter 12](manuscript/Isolation_Game_Research_Report.pdf#page=54) · [Lean entry](formal/D9/FourteenDiameterNineClosure.lean) |
+| At diameter 10, both starters can exceed the ceiling for infinitely many orders. | [Appendix B](manuscript/Isolation_Game_Research_Report.pdf#page=59) · [Zoomable construction](demo/d10.html) · [Lean entry](formal/D10/FinalDiameterCounterexample.lean) |
 
 ## A concrete D9 proof case / D9 证明中的一棵树
 
