@@ -6,6 +6,8 @@
 
 [**Full paper (PDF)**](manuscript/Isolation_Game_Research_Report.pdf) · [**Lean source and builds**](formal/README.md) · [**Play online**](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html)
 
+[**How AI worked through the problem**](RESEARCH.md) follows the failed center opening, the one-leaf counterexample, the search for diameter 10 and the repaired D9 proof. Each episode links to a replay or proof artifact.
+
 ![The diameter threshold from 9 to 10](assets/diameter-threshold.svg)
 
 ## What we established
@@ -20,7 +22,7 @@
 
 The result pinpoints **where the rounded conjecture first fails on trees**. At the boundary, the counterexample gap grows by at least $k$. The upper-bound proof shows how to use finite certificates in an unbounded minimax problem. Structural reductions limit the exceptional branches, while strategies for 14 families handle arbitrarily many ordinary branches.
 
-The exhibit makes the AI-led research inspectable. Readers can replay the failed center opening, reproduce the one-leaf counterexample, and inspect the Lean proof endpoints. [Research process and failed attempts](RESEARCH.md)
+Readers can check specific examples in Python and read the general proofs in the paper and Lean. The dated research account records when the human directed a check or approved a change in goal, and what AI proposed or revised.
 
 ## Explore and reproduce
 

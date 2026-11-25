@@ -23,6 +23,7 @@
     .actions a { background:#fffef7; border:1px solid #99a99d; border-radius:.48rem; padding:.62rem 1rem; font-weight:660; text-decoration:none; }
     .actions a:first-child { background:#215b46; border-color:#215b46; color:#fff; }
     .actions a:hover { background:#e8ecdf; color:#18382e; }
+    .story-link { margin:1rem 0 0; font-weight:650; }
     figure { margin:0; }
     figure img { display:block; width:100%; height:auto; }
     figcaption { margin:.65rem 0 0; font-size:.93rem; color:#3e5b50; }
@@ -55,6 +56,7 @@
         <a href="https://github.com/prooflog553/isolation-game-on-trees-exhibit/tree/main/formal" data-en="Lean source and builds">Lean 源码与构建</a>
         <a href="demo/index.html" data-en="Play the game">在线玩一局</a>
       </nav>
+      <p class="story-link"><a href="https://github.com/prooflog553/isolation-game-on-trees-exhibit/blob/main/RESEARCH.zh-Hans.md" data-en-href="https://github.com/prooflog553/isolation-game-on-trees-exhibit/blob/main/RESEARCH.md" data-en="How AI worked through the problem">看 AI 是怎样解题的</a></p>
     </div>
     <figure>
       <img src="assets/diameter-threshold.svg" alt="舍入界在直径 9 到 10 的变化" width="1040" height="320">
@@ -68,7 +70,7 @@
       <article><h3 data-en="A proof for unbounded trees">覆盖无界规模的一般证明</h3><p data-en="Finite checks handle the exceptional cases. Strategies for 14 families account for arbitrarily many ordinary branches.">有限证书处理局部状态，14 族策略处理任意多普通分支。源码、检查器和一般证明都可以查看。</p></article>
       <article><h3 data-en="An inspectable research process">可以复查的研究过程</h3><p data-en="Replay the failed center opening, verify the one-leaf counterexample, or build all four Lean targets from pinned inputs.">可以重现中心首着失败，复算一片叶子的反例，或用固定输入重建四个 Lean 目标。</p></article>
     </div>
-    <a href="demo/d10.html" data-en="Explore the D10 construction">查看可缩放的 D10 构造</a> · <a href="https://github.com/prooflog553/isolation-game-on-trees-exhibit/blob/main/RESEARCH.md" data-en="Read the research process">阅读研究过程和失败记录</a>
+    <a href="demo/d10.html" data-en="Explore the D10 construction">查看可缩放的 D10 构造</a>
   </section>
 </main>
 <footer data-en="Archive curation and maintenance by Cen Yi (岑弈).">档案整理与维护由岑弈（Cen Yi）负责。</footer>
@@ -76,6 +78,7 @@
   if (new URLSearchParams(location.search).get('lang') === 'en') {
     document.documentElement.lang = 'en';
     document.querySelectorAll('[data-en]').forEach(node => { node.textContent = node.dataset.en; });
+    document.querySelectorAll('[data-en-href]').forEach(node => { node.href = node.dataset.enHref; });
     document.querySelector('figure img').alt = 'The rounded bound changes at diameter 9 to 10';
   }
 </script>
