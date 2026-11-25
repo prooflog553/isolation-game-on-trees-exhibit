@@ -5,79 +5,108 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>直径 10 的反例族</title>
   <style>
-    :root {
-      color-scheme: light;
-      font: 1rem/1.5 system-ui, "Segoe UI", sans-serif;
-      color: #18312b;
-      background: #f5f5ee;
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; }
-    main { max-width: 72rem; padding: clamp(1rem, 4vw, 3rem); margin: auto; }
-    h1 { font: 500 clamp(1.9rem, 5vw, 3rem)/1.12 Georgia, "Songti SC", serif; margin: 0; }
-    h2 { font-size: 1.12rem; margin: 0 0 .5rem; }
-    p { margin: .5rem 0 0; color: #40594f; }
-    header, .controls { display: flex; gap: .7rem 1.2rem; flex-wrap: wrap; align-items: center; }
-    header { justify-content: space-between; }
-    .controls { margin: 1.2rem 0 .8rem; }
-    label { display: inline-flex; align-items: center; gap: .45rem; font-weight: 650; }
-    select { border: 1px solid #7b9487; border-radius: .4rem; background: #fffefa; color: inherit; padding: .4rem; font: inherit; }
-    :focus-visible { outline: 3px solid #1d6096; outline-offset: 3px; }
-    .summary { display: block; font-weight: 700; color: #225545; margin: .2rem 0 1rem; }
-    .grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: .85rem; }
-    figure { margin: 0; padding: 1rem; border: 1px solid #cdd5c9; background: #fffefa; border-radius: .7rem; min-width: 0; }
-    .viewport { overflow: auto; background: #edf1e5; border-radius: .45rem; }
-    svg { display: block; width: calc(100% * var(--zoom, 1)); height: auto; }
-    svg line { stroke: #658374; stroke-width: 2.1; }
-    svg line.route { stroke: #a04829; stroke-width: 4; }
-    svg circle { fill: #fbfdf7; stroke: #2b6552; stroke-width: 2; }
-    svg circle.gate { fill: #cadecd; }
-    svg circle.hub { fill: #2b6552; }
-    svg circle.leaf { fill: #f0c7b3; stroke: #a04829; }
-    figcaption { color: #40594f; margin-top: .65rem; }
-    .diameter { margin-top: .9rem; padding: .8rem 1rem; border-left: 3px solid #a04829; background: #f1e7dc; }
-    .diameter p { color: #533b2f; }
-
-    body { background: #f3f2e9; }
-    main { max-width: 78rem; }
-    header { padding-bottom: 1.2rem; border-bottom: 1px solid #cdd5c9; }
-    .eyebrow { color: #9a4a2c; text-transform: uppercase; font-size: .76rem; font-weight: 750; letter-spacing: .13em; margin-bottom: .45rem; }
-    .language { background: #fffefa; border: 1px solid #cdd5c9; padding: .55rem .7rem; border-radius: .65rem; }
-    .lede { max-width: 55rem; margin: 1.3rem 0 .8rem; font-size: 1.06rem; }
-    .explain { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7rem; margin: 1rem 0; }
-    .explain article { background: #fffefa; border: 1px solid #cdd5c9; border-radius: .65rem; padding: .9rem; }
-    .explain b { color: #225545; }
-    .explain p { font-size: .9rem; }
-    .summary { padding: .85rem 1rem; border-radius: .6rem; background: #e0ede0; }
-    figure { border-radius: .8rem; }
-    figcaption { line-height: 1.55; }
-    .project-nav { display:flex; flex-wrap:wrap; gap:1rem; margin-top:1.5rem; }
-    a { color: #145641; text-underline-offset:.2em; }
-    @media (max-width: 40rem) { .explain { grid-template-columns: 1fr; } }
-    @media (max-width: 47rem) { .grid { grid-template-columns: minmax(0, 1fr); } }
+:root {
+  color-scheme: light;
+  --ink: #132b37;
+  --navy: #122d3b;
+  --muted: #526873;
+  --teal: #176459;
+  --line: #d9e4e5;
+  --route: #ae482b;
+  font: 1rem/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--ink); background: #eff3f2;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { width: min(100%, 78rem); margin: auto; padding: clamp(.75rem, 3.5vw, 2.5rem); }
+h1, h2, p { margin: 0; }
+h1 { font: 550 clamp(1.85rem, 4.5vw, 3.45rem)/1.08 Georgia, "Songti SC", serif; }
+h2 { font-size: 1.05rem; line-height: 1.25; }
+.header {
+  background: radial-gradient(ellipse at 98% 5%, #285665 0, transparent 52%), var(--navy); color: #fff;
+  padding: clamp(1.15rem, 4vw, 2.85rem); border-radius: 1.1rem;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: .8rem 1.5rem;
+}
+.header h1 { overflow-wrap: anywhere; }
+.lede { margin-top: .7rem; max-width: 44rem; color: #cde0e3; }
+.controls { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .6rem 1.2rem; margin: 1rem 0; }
+.parameter { display: flex; align-items: center; gap: .35rem; flex-wrap: wrap; }
+label { display: inline-flex; align-items: center; gap: .5rem; font-size: .92rem; font-weight: 650; }
+select, button {
+  color: var(--ink); font: inherit; min-height: 2.6rem; padding: .5rem .7rem; background: #fff;
+  border: 1px solid #a3b8bc; border-radius: .55rem; max-width: 100%;
+}
+.language select { background: #f1f8f6; }
+button { min-width: 2.6rem; font-weight: 730; }
+button, select, summary { cursor: pointer; }
+button:hover:not(:disabled) { background: #e8f4ef; }
+button:disabled { opacity: .46; cursor: default; }
+:focus-visible { outline: 3px solid #326bbb; outline-offset: 3px; }
+.metrics {
+  display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: .55rem;
+  padding: .55rem; background: #dfeae9; border: 1px solid var(--line); border-radius: .8rem; margin: 0 0 1rem;
+}
+.metrics div { padding: .55rem .7rem; border-radius: .48rem; background: #f8fcfb; }
+.metrics div:nth-child(3) { background: #e4f3ed; }
+.metrics div:last-child { background: #faece2; }
+.metrics span { color: var(--muted); display: block; font-size: .82rem; overflow-wrap: anywhere; }
+.metrics strong { display: block; font: 600 clamp(1.4rem, 3vw, 2rem) Georgia, serif; font-variant-numeric: tabular-nums; }
+.metrics .gap { font-size: .78rem; font-weight: 680; color: #893a23; }
+.grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 1rem; }
+figure, .diameter, .more {
+  margin: 0; padding: clamp(.75rem, 2vw, 1.15rem); background: #fff; border: 1px solid var(--line);
+  border-radius: 1rem; min-width: 0; box-shadow: 0 3px 12px #183b4c0a;
+}
+.viewport { overflow: auto; background: #f4f8f7; border-radius: .65rem; margin-top: .55rem; }
+svg { display: block; width: calc(100% * var(--zoom, 1)); height: auto; }
+svg line { stroke: #769993; stroke-width: 2.1; }
+svg line.route { stroke: var(--route); stroke-width: 4; }
+svg circle { fill: #fff; stroke: #2a6a60; stroke-width: 2; }
+svg circle.gate { fill: #d1e9e0; }
+svg circle.hub { fill: #2a6a60; }
+svg circle.leaf { fill: #f8d3bf; stroke: var(--route); }
+figcaption, .diameter p, .more p { color: var(--muted); font-size: .91rem; margin-top: .55rem; }
+.diameter { margin-top: 1rem; border-left: 4px solid var(--route); }
+.path-length { display: inline-flex; align-items: center; gap: .45rem; color: #783922; margin: .55rem 0 0; font-size: 1.05rem; font-weight: 750; }
+.path-length b { display: inline-grid; place-items: center; background: #fae5d8; padding: .2rem .55rem; border-radius: .35rem; }
+.more { margin-top: 1rem; background: #f8fbfa; }
+summary { color: var(--ink); font-weight: 730; }
+.explain { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; margin-top: .7rem; }
+.explain b { color: var(--teal); }
+.project-nav { display: flex; flex-wrap: wrap; gap: .75rem 1.3rem; margin-top: 1.1rem; font-size: .9rem; }
+a { color: #1a5e58; text-underline-offset: .2em; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 47rem) { .grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 36rem) {
+  .header { border-radius: .8rem; grid-template-columns: minmax(0, 1fr); }
+  .metrics { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .explain { grid-template-columns: 1fr; gap: .6rem; }
+}
   </style>
 </head>
 <body>
 <main>
-  <header>
-    <div><p class="eyebrow" data-copy="eyebrow"></p><h1 data-copy="title">直径 10 的反例族</h1></div>
-    <label class="language"><span aria-hidden="true">🌐</span> <span data-copy="language"></span>
+  <header class="header">
+    <div><h1 data-copy="title">直径 10 的反例族</h1><p class="lede" data-copy="intro"></p></div>
+    <label class="language"><span data-copy="language"></span>
       <select id="language">
-        <option value="zh">简体中文</option>
-        <option value="en">English</option>
-        <option value="ja" lang="ja">日本語</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="pt" lang="pt">Português</option>
+        <option value="zh" lang="zh-Hans">简体中文</option>
+        <option value="en" lang="en">English</option>
+        <option value="ja" lang="ja">日本語</option>
+        <option value="es" lang="es">Español</option>
+        <option value="fr" lang="fr">Français</option>
+        <option value="de" lang="de">Deutsch</option>
+        <option value="pt" lang="pt">Português</option>
       </select>
     </label>
   </header>
-  <noscript><p>此图需要 JavaScript。 / This diagram requires JavaScript. <a href="../assets/d10-module.svg">静态模块图 / Static module diagram</a></p></noscript>
-  <p class="lede" data-copy="intro"></p>
-  <section class="explain" aria-label="">
-    <article><b data-copy="step1Title"></b><p data-copy="step1"></p></article>
-    <article><b data-copy="step2Title"></b><p data-copy="step2"></p></article>
-    <article><b data-copy="step3Title"></b><p data-copy="step3"></p></article>
-  </section>
+  <noscript><p>请启用 JavaScript / Enable JavaScript to explore. <a href="../assets/d10-module.svg">静态模块图 / Static module diagram</a></p></noscript>
   <div class="controls">
-    <label><span data-copy="parameter"></span><select id="parameter"></select></label>
+    <div class="parameter">
+      <button id="less" type="button" aria-label="k − 1">−</button>
+      <label><span data-copy="parameter"></span><select id="parameter"></select></label>
+      <button id="more" type="button" aria-label="k + 1">+</button>
+    </div>
     <label><span data-copy="zoom"></span>
       <select id="zoom">
         <option value="1">100%</option>
@@ -86,34 +115,45 @@
       </select>
     </label>
   </div>
-  <output id="summary" class="summary" role="status" aria-atomic="true"></output>
+  <output id="summary" class="sr-only" role="status" aria-atomic="true"></output>
+  <div class="metrics">
+    <div><span id="modules-label"></span><strong id="modules-count"></strong></div>
+    <div><span id="vertices-label"></span><strong id="vertices-count"></strong></div>
+    <div><span id="lower-label"></span><strong id="lower-count"></strong><span id="gap-count" class="gap"></span></div>
+    <div><span id="ceiling-label"></span><strong id="ceiling-count"></strong></div>
+  </div>
   <div class="grid">
     <figure>
       <h2 data-copy="module"></h2>
       <div class="viewport" tabindex="0" role="region" aria-labelledby="module-title">
-        <svg id="module" viewBox="0 0 505 300" role="img">
-          <title id="module-title"></title>
-        </svg>
+        <svg id="module" viewBox="0 0 505 300" role="img"><title id="module-title"></title></svg>
       </div>
       <figcaption data-copy="moduleCaption"></figcaption>
     </figure>
     <figure>
       <h2 data-copy="star"></h2>
       <div class="viewport" tabindex="0" role="region" aria-labelledby="star-title">
-        <svg id="star" viewBox="0 0 400 300" role="img">
-          <title id="star-title"></title>
-        </svg>
+        <svg id="star" viewBox="0 0 400 300" role="img"><title id="star-title"></title></svg>
       </div>
       <figcaption data-copy="starCaption"></figcaption>
     </figure>
   </div>
   <section class="diameter">
     <h2 data-copy="diameter"></h2>
+    <div class="path-length"><b>4</b> + <b>2</b> + <b>4</b> = <b>10</b></div>
     <p data-copy="distance"></p>
     <p data-copy="bound"></p>
     <p><a href="../manuscript/Isolation_Game_Research_Report.pdf#page=59" data-copy="proof"></a></p>
   </section>
-  <nav class="project-nav"><a id="game-link" href="index.html" data-copy="gameLink"></a><a href="../" data-copy="homeLink"></a></nav>
+  <details class="more">
+    <summary id="explain-title"></summary>
+    <div class="explain">
+      <article><b data-copy="step1Title"></b><p data-copy="step1"></p></article>
+      <article><b data-copy="step2Title"></b><p data-copy="step2"></p></article>
+      <article><b data-copy="step3Title"></b><p data-copy="step3"></p></article>
+    </div>
+  </details>
+  <nav class="project-nav"><a id="game-link" href="index.html" data-copy="gameLink"></a><a id="home-link" href="../" data-copy="homeLink"></a></nav>
 </main>
 <script>
   const strings = {
@@ -169,6 +209,15 @@
   strings["pt"] = {"title": "A família de contraexemplos de diâmetro 10", "intro": "Repetimos e conectamos um módulo pequeno para construir árvores que ultrapassam a cota arredondada para cima. Os dois diagramas mostram como.", "parameter": "Parâmetro k", "zoom": "Ampliação", "module": "Etapa 1: um módulo de 15 vértices", "star": "Etapa 2: ligar os centros", "moduleTitle": "Um módulo: um centro ligado aos pontos médios de dois caminhos de sete vértices", "moduleCaption": "Ligamos os pontos médios de dois caminhos disjuntos de sete vértices a um centro comum. São 1 + 2 × 7 = 15 vértices; uma extremidade mais distante fica a 4 arestas do centro.", "starCaption": "Cada ponto representa o centro de um módulo existente, não todos os vértices da árvore. Acrescentam-se apenas arestas entre centros; o laranja marca a ligação de dois módulos externos ao centro da estrela.", "diameter": "Por que o diâmetro é exatamente 10?", "distance": "Entre dois vértices, um caminho percorre no máximo 4 arestas no primeiro módulo, 2 na estrela e 4 no último. As extremidades mais distantes dos dois módulos externos destacados dão exatamente 4 + 2 + 4 = 10.", "bound": "A construção vale para todo inteiro positivo k. 91k é uma cota inferior para qualquer primeiro jogador, não um valor exato. Aqui é possível visualizar k de 1 a 10.", "proof": "Leia a prova da estratégia no apêndice B", "language": "Idioma", "eyebrow": "Matemática interativa · construção de um contraexemplo", "step1Title": "1 · Construir um módulo", "step1": "Dois caminhos de sete vértices e um centro comum somam 15 vértices.", "step2Title": "2 · Formar uma árvore", "step2": "Use 14k módulos e ligue seus centros existentes em estrela, sem adicionar vértices.", "step3Title": "3 · Comparar jogadas", "step3": "A prova fornece pelo menos 91k jogadas; a cota de referência é 90k.", "gameLink": "← Voltar ao jogo", "homeLink": "Página inicial do projeto"};
   strings["pt"].summary = (m,n,k) => m + " módulos × 15 vértices = " + n + " vértices · diâmetro 10 · pelo menos " + 91*k + " jogadas, referência " + 90*k;
   strings["pt"].starTitle = m => "Estrela de " + m + " centros, com duas ligações externas destacadas";
+  const metricLabels = {
+    zh: ["模块数", "顶点数", "两种先手的手数下界", "上取整基准", "至少超出 ", "构造与下界怎么读"],
+    en: ["Modules", "Vertices", "Move lower bound, either starter", "Ceiling benchmark", "At least +", "How the construction works"],
+    ja: ["モジュール数", "頂点数", "両先手の手数の下界", "切り上げ基準", "少なくとも +", "構成と下界の読み方"],
+    es: ["Módulos", "Vértices", "Cota inferior para ambos inicios", "Referencia por exceso", "Al menos +", "Cómo funciona la construcción"],
+    fr: ["Modules", "Sommets", "Borne inférieure pour les deux départs", "Borne de référence arrondie", "Au moins +", "Comprendre la construction"],
+    de: ["Module", "Knoten", "Untere Zuggrenze für beide Startspieler", "Aufgerundete Schranke", "Mindestens +", "So funktioniert die Konstruktion"],
+    pt: ["Módulos", "Vértices", "Limite inferior para ambos os inícios", "Referência arredondada para cima", "Pelo menos +", "Como funciona a construção"],
+  };
   const el = id => document.getElementById(id);
   const svg = (tag, attrs) => {
     const node = document.createElementNS("http://www.w3.org/2000/svg", tag);
@@ -219,11 +268,25 @@
     document.documentElement.lang = lang === "zh" ? "zh-Hans" : lang;
     el("language").setAttribute("aria-label", copy.language);
     el("game-link").href = "index.html?lang=" + encodeURIComponent(lang);
+    el("home-link").href = "../?lang=" + encodeURIComponent(lang);
     document.title = copy.title;
     document.querySelectorAll("[data-copy]").forEach(n => { n.textContent = copy[n.dataset.copy]; });
     const k = Number(el("parameter").value);
     const m = 14 * k;
     el("summary").textContent = copy.summary(m, 15 * m, k);
+    const [modules, vertices, lower, ceiling, gap, explain] = metricLabels[lang];
+    el("modules-label").textContent = modules;
+    el("vertices-label").textContent = vertices;
+    el("lower-label").textContent = lower;
+    el("ceiling-label").textContent = ceiling;
+    el("explain-title").textContent = explain;
+    el("modules-count").textContent = m;
+    el("vertices-count").textContent = 15 * m;
+    el("lower-count").textContent = 91 * k;
+    el("ceiling-count").textContent = 90 * k;
+    el("gap-count").textContent = gap + k;
+    el("less").disabled = k === 1;
+    el("more").disabled = k === 10;
     drawStar(m);
     el("module-title").textContent = copy.moduleTitle;
     el("star-title").textContent = copy.starTitle(m);
@@ -231,6 +294,15 @@
 
   for (let k = 1; k <= 10; k++) el("parameter").add(new Option("k = " + k, k));
   el("parameter").addEventListener("change", refresh);
+  for (const [id, delta] of [["less", -1], ["more", 1]]) {
+    el(id).addEventListener("click", () => {
+      const k = Number(el("parameter").value) + delta;
+      if (k < 1 || k > 10) return;
+      el("parameter").value = String(k);
+      refresh();
+      if (el(id).disabled) el("parameter").focus();
+    });
+  }
   el("language").addEventListener("change", refresh);
   el("zoom").addEventListener("change", () => {
     document.documentElement.style.setProperty("--zoom", el("zoom").value);

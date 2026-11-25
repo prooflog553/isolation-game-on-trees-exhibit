@@ -5,150 +5,139 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>树上的隔离博弈</title>
   <style>
-    :root {
-      color-scheme: light;
-      --ink: #18312b;
-      --muted: #455a52;
-      --green: #245a49;
-      --paper: #f5f5ee;
-      --card: #fffefa;
-      --line: #cdd5c9;
-      --blue: #145779;
-      --rust: #923d24;
-      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-      line-height: 1.5;
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: var(--paper); color: var(--ink); }
-    main { max-width: 76rem; margin: auto; padding: clamp(1rem, 4vw, 3rem); }
-    h1, h2, p { margin: 0; }
-    h1 { font: 500 clamp(1.85rem, 4vw, 3.1rem)/1.14 Georgia, "Songti SC", serif; }
-    h2 { font-size: 1rem; line-height: 1.3; }
-    p + p { margin-top: .6rem; }
-    .header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
-    .intro { max-width: 48rem; margin-top: .65rem; color: var(--muted); }
-    .settings { display: flex; flex-wrap: wrap; gap: .7rem 1.25rem; margin: 1.4rem 0 .9rem; }
-    label { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .5rem; font-weight: 650; }
-    select, button {
-      font: inherit;
-      color: inherit;
-      min-height: 2.5rem;
-      padding: .42rem .7rem;
-      background: var(--card);
-      border: 1px solid #82958b;
-      border-radius: .45rem;
-    }
-    button, select, summary { cursor: pointer; }
-    button:hover:not(:disabled) { background: #e7efe7; }
-    button:disabled { opacity: .52; cursor: default; }
-    :focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
-    .workspace { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(16rem, 1fr); align-items: start; gap: 1rem; }
-    .panel { min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: .85rem; padding: 1rem; }
-    .board-panel { padding: clamp(.6rem, 2vw, 1rem); }
-    .status { display: block; margin: .15rem .15rem .6rem; font-weight: 700; }
-    #board { display: block; width: 100%; height: auto; border-radius: .6rem; background: #edf1e5; }
-    #board line { stroke: #819287; stroke-width: 2; }
-    #board .live { stroke: #b44c2e; stroke-width: 4; }
-    #board circle { fill: var(--card); stroke: var(--green); stroke-width: 2; }
-    #board .covered circle { fill: #d5e1d3; }
-    #board .best circle { stroke: var(--blue); stroke-width: 4; }
-    #board [data-i]:focus-visible circle { stroke: #50388c; stroke-width: 4; }
-    #board g[aria-disabled="false"] { cursor: pointer; }
-    #board text { text-anchor: middle; dominant-baseline: central; fill: var(--ink); font: 700 15px system-ui, sans-serif; pointer-events: none; }
-    .legend { display: flex; flex-wrap: wrap; gap: .35rem 1rem; color: var(--muted); font-size: .86rem; margin: .65rem .15rem; }
-    .legend span { display: inline-flex; align-items: center; gap: .35rem; }
-    .key { width: .85rem; height: .85rem; display: inline-block; border-radius: 50%; }
-    .key-live { height: 0; border: 2px solid #b44c2e; border-radius: 2px; }
-    .key-covered { background: #d5e1d3; border: 1px solid #657e6e; }
-    .key-best { border: 2px solid var(--blue); }
-    .actions, .sequence { display: flex; flex-wrap: wrap; gap: .42rem; }
-    .moves { display: grid; grid-template-columns: repeat(auto-fill, minmax(4.35rem, 1fr)); gap: .42rem; }
-    .actions { margin-top: .9rem; }
-    #optimal { background: var(--green); color: white; border-color: var(--green); }
-    #optimal:hover:not(:disabled) { background: #19493b; }
-    .aside { align-self: start; }
-    .aside section + section { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
-    .aside p, .history-block p { color: var(--muted); font-size: .89rem; margin-top: .4rem; }
-    .opening-values, .sequence, .moves { margin-top: .55rem; }
-    .opening-values { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem; }
-    .opening-values div { padding: .45rem .6rem; border-radius: .5rem; background: #edf1e9; }
-    .opening-values span { display: block; color: var(--muted); font-size: .85rem; }
-    .opening-values b { font-size: 1.25rem; font-variant-numeric: tabular-nums; }
-    .move.best { border: 2px solid var(--blue); color: var(--blue); font-weight: 700; padding: .36rem .44rem; }
-    .move { padding-inline: .5rem; font-size: .88rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
-    .sequence { list-style: none; padding: 0; }
-    .ply { border-radius: .35rem; padding: .15rem .45rem; font-size: .87rem; font-weight: 700; background: #e0efe6; }
-    .ply[data-player="S"] { background: #f2e6da; color: #68371e; }
-    .history-block { margin-top: 1rem; }
-    .history-block p { overflow-wrap: anywhere; }
-    details { margin-top: .9rem; color: var(--muted); font-size: .9rem; }
-    summary { width: fit-content; color: var(--ink); font-weight: 650; }
-    details p { margin-top: .5rem; }
-
-    body { background: #f3f2e9; }
-    main { max-width: 82rem; }
-    .header { align-items: end; padding-bottom: 1.4rem; border-bottom: 1px solid var(--line); }
-    .eyebrow { color: #9a4a2c; text-transform: uppercase; font-size: .76rem; font-weight: 750; letter-spacing: .13em; margin-bottom: .45rem; }
-    .intro { max-width: 42rem; font-size: 1.06rem; }
-    .language { background: #fffefa; border: 1px solid var(--line); padding: .55rem .7rem; border-radius: .65rem; }
-    .guide { margin: 1.4rem 0; }
-    .guide-head { display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap; }
-    .guide h2 { font: 600 clamp(1.3rem,2.5vw,1.7rem)/1.2 Georgia, serif; }
-    .guide-head p { color: var(--muted); font-size: .91rem; }
-    .steps { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .7rem; margin-top: .85rem; }
-    .step { background: #fffefa; border: 1px solid var(--line); border-radius: .7rem; padding: 1rem; }
-    .step b { display: block; color: var(--green); font-size: .98rem; }
-    .step b::before { content: attr(data-number); display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: #dceade; margin-right: .5rem; font-size: .82rem; }
-    .step p { color: var(--muted); font-size: .9rem; margin-top: .5rem; }
-    .example { margin-top: .7rem; display: grid; grid-template-columns: auto 1fr; gap: .8rem 1.2rem; align-items: center; background: #e7eee2; border-radius: .7rem; padding: .9rem 1rem; }
-    .example strong { display: block; color: var(--green); }
-    .example p { margin: .2rem 0 0; color: var(--muted); font-size: .9rem; }
-    .path-illustration { display: flex; align-items: center; color: #637c6c; white-space: nowrap; }
-    .path-illustration i { width: .8rem; height: 2px; background: #829888; }
-    .path-illustration i.live { height: 3px; background: #b44c2e; }
-    .path-illustration span { display: grid; place-items: center; width: 1.7rem; height: 1.7rem; background: #fffefa; border: 1.5px solid var(--green); border-radius: 50%; font-size: .76rem; font-weight: 700; }
-    .path-illustration span.mark { background: #cddfcb; }
-    .settings { padding-top: .1rem; }
-    .board-heading { display: flex; justify-content: space-between; align-items: baseline; gap: .8rem; flex-wrap: wrap; margin-bottom: .35rem; }
-    .board-heading h2 { font-size: 1.15rem; }
-    .board-heading p { color: var(--muted); font-size: .86rem; }
-    .aside { border-top: 4px solid #346b57; }
-    .aside > h2 { font-size: 1.05rem; }
-    .aside > p { color: var(--muted); font-size: .88rem; margin-top: .3rem; }
-    .project-nav { display:flex; gap: 1rem; flex-wrap:wrap; margin-top: 1.4rem; font-size:.9rem; }
-    a { color: #145641; text-underline-offset: .2em; }
-    @media (max-width: 40rem) { .steps { grid-template-columns: 1fr; } .example { grid-template-columns: 1fr; } .path-illustration { justify-content: center; } .settings label { max-width: 100%; } .settings select { max-width: 100%; min-width: 0; } #board circle { r: 21px; } #board text { font-size: 22px; } }
-    @media (max-width: 51rem) { .workspace { grid-template-columns: minmax(0, 1fr); } }
+:root {
+  color-scheme: light;
+  --ink: #132b37;
+  --muted: #526873;
+  --navy: #122d3b;
+  --teal: #176459;
+  --mint: #d9eee5;
+  --paper: #eff3f2;
+  --card: #fff;
+  --edge: #b2462c;
+  --blue: #175a9e;
+  --line: #d9e4e5;
+  font: 1rem/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); }
+main { width: min(100%, 78rem); margin: auto; padding: clamp(.75rem, 3.5vw, 2.5rem); }
+h1, h2, p { margin: 0; }
+h1 { font: 550 clamp(1.85rem, 4.5vw, 3.45rem)/1.08 Georgia, "Songti SC", serif; }
+h2 { font-size: 1.05rem; line-height: 1.25; }
+.header {
+  background: radial-gradient(ellipse at 98% 5%, #285665 0, transparent 52%), var(--navy);
+  color: #fff; padding: clamp(1.15rem, 4vw, 2.85rem); border-radius: 1.1rem;
+  display: flex; justify-content: space-between; gap: .8rem 1.5rem; flex-wrap: wrap; align-items: start;
+}
+.intro { margin-top: .7rem; color: #cde0e3; max-width: 44rem; }
+label { display: inline-flex; align-items: center; gap: .55rem; font-size: .92rem; font-weight: 650; }
+.language { align-self: start; }
+.language select { background: #f1f8f6; }
+select, button {
+  color: var(--ink); font: inherit; min-height: 2.6rem; padding: .5rem .7rem;
+  background: var(--card); border: 1px solid #a3b8bc; border-radius: .55rem; max-width: 100%;
+}
+button, select, summary { cursor: pointer; }
+button:hover:not(:disabled) { background: #e8f4ef; }
+button:disabled { opacity: .5; cursor: default; }
+:focus-visible { outline: 3px solid #326bbb; outline-offset: 3px; }
+.settings { display: flex; gap: .6rem 1.2rem; margin: 1rem 0; flex-wrap: wrap; }
+.workspace { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); align-items: start; gap: 1rem; }
+.panel { min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: 1rem; padding: clamp(.75rem, 2vw, 1.15rem); box-shadow: 0 3px 12px #183b4c0a; }
+.board-heading { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; flex-wrap: wrap; }
+.board-heading p, .subtle, .aside p { color: var(--muted); font-size: .89rem; }
+.turnbar { display: flex; justify-content: space-between; align-items: center; gap: .4rem .7rem; flex-wrap: wrap; margin: .7rem 0 .55rem; }
+.status { display: block; font-weight: 730; color: var(--teal); }
+.edge-count { display: block; background: #fbece4; color: #8b351f; border-radius: .32rem; padding: .2rem .48rem; font-size: .83rem; font-weight: 650; }
+.lesson {
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .55rem .85rem;
+  background: #e6f3ef; border-left: 3px solid #268174; border-radius: .55rem;
+  padding: .58rem .7rem; margin: .65rem 0;
+}
+.lesson p { flex: 1 1 10rem; font-size: .92rem; }
+.lesson button { border-color: #5c9389; background: #f8fdfb; color: #164e45; font-weight: 680; }
+.lesson button:hover { background: #d1ece2; }
+#board { display: block; width: 100%; height: auto; border-radius: .65rem; background: #f4f8f7; }
+#board line { stroke: #94a8a7; stroke-width: 2; }
+#board .live { stroke: var(--edge); stroke-width: 4; }
+#board circle { fill: #fff; stroke: #376a63; stroke-width: 2; }
+#board .covered circle { fill: var(--mint); }
+#board .chosen circle { stroke-dasharray: 2.4 2.4; }
+#board .last circle { fill: #abd8ca; }
+#board .best circle { stroke: var(--blue); stroke-width: 4; }
+#board .suggested circle { stroke: #71438d; stroke-width: 5; stroke-dasharray: 5 3; }
+#board [data-i]:focus-visible circle { stroke: #512b7b; stroke-width: 4; }
+#board [aria-disabled="false"] { cursor: pointer; }
+#board [aria-disabled="false"]:hover circle { fill: #d9e9fe; }
+#board text { text-anchor: middle; dominant-baseline: central; fill: var(--ink); font: 720 16px system-ui, sans-serif; pointer-events: none; }
+.legend { display: flex; flex-wrap: wrap; gap: .35rem 1rem; color: var(--muted); font-size: .83rem; padding-top: .65rem; }
+.legend span { display: inline-flex; align-items: center; gap: .35rem; }
+.key { width: .82rem; height: .82rem; display: inline-block; border-radius: 50%; }
+.key-live { height: 0; border: 2px solid var(--edge); border-radius: 2px; }
+.key-covered { background: var(--mint); border: 1px solid #638a80; }
+.key-best { border: 2px solid var(--blue); }
+.impact { min-height: 1.4rem; color: #37625b; font-size: .9rem; margin-top: .6rem; }
+.impact:empty { display: none; }
+.actions, .sequence { display: flex; flex-wrap: wrap; gap: .45rem; }
+.actions { margin-top: .55rem; }
+#optimal { background: var(--teal); color: white; border-color: var(--teal); font-weight: 690; }
+#optimal:hover:not(:disabled) { background: #104c46; }
+.legal { margin-top: .95rem; padding-top: .85rem; border-top: 1px solid var(--line); }
+.moves { display: grid; grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr)); gap: .4rem; margin-top: .55rem; }
+.move { padding: .35rem .38rem; min-height: 2.55rem; font-size: .87rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.move.best { border: 2px solid var(--blue); color: var(--blue); background: #f3f8ff; font-weight: 700; }
+.subtle { margin-top: .35rem; }
+.aside { border-top: 4px solid #377b71; }
+.aside section + section { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+.opening-values { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .55rem; margin-top: .55rem; }
+.opening-values div { padding: .6rem .7rem; border-radius: .5rem; background: #eaf4f2; }
+.opening-values div:last-child { background: #fcf1e7; }
+.opening-values span { display: block; font-size: .84rem; color: var(--muted); }
+.opening-values b { font: 600 1.7rem Georgia, serif; font-variant-numeric: tabular-nums; }
+.sequence { list-style: none; padding: 0; margin: .6rem 0 0; }
+.ply { border-radius: 1rem; padding: .18rem .55rem; font-size: .84rem; font-weight: 700; background: #dbefe8; }
+.ply[data-player="S"] { background: #fae9dd; color: #793d24; }
+.history-block { margin-top: 1rem; }
+#history { overflow-wrap: anywhere; }
+.rules { margin-top: 1rem; background: #f8fbfa; }
+summary { color: var(--ink); font-weight: 730; }
+.steps { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; margin: .8rem 0; }
+.step p, .example p { color: var(--muted); margin-top: .25rem; font-size: .9rem; }
+.example { border-top: 1px solid var(--line); padding-top: .7rem; }
+.project-nav { display: flex; flex-wrap: wrap; gap: .75rem 1.3rem; margin-top: 1.1rem; font-size: .9rem; }
+a { color: #1a5e58; text-underline-offset: .2em; }
+@media (max-width: 47rem) { .workspace { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 36rem) {
+  .header { border-radius: .8rem; }
+  .settings label { min-width: 0; flex: 1 1 10rem; flex-wrap: wrap; }
+  .settings select { width: 100%; }
+  .steps { grid-template-columns: 1fr; gap: .6rem; }
+  #board circle { r: 21px; }
+  #board text { font-size: 23px; }
+  .move { min-height: 2.75rem; }
+}
   </style>
 </head>
 <body>
 <main>
   <header class="header">
     <div>
-      <p class="eyebrow" data-copy="eyebrow"></p>
       <h1 data-copy="title">树上的隔离博弈</h1>
       <p class="intro" data-copy="intro"></p>
     </div>
-    <label class="language"><span aria-hidden="true">🌐</span> <span data-copy="language"></span>
+    <label class="language"><span data-copy="language"></span>
       <select id="language">
         <option value="zh" lang="zh-Hans">简体中文</option>
-        <option value="en">English</option>
-        <option value="ja" lang="ja">日本語</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="pt" lang="pt">Português</option>
+        <option value="en" lang="en">English</option>
+        <option value="ja" lang="ja">日本語</option>
+        <option value="es" lang="es">Español</option>
+        <option value="fr" lang="fr">Français</option>
+        <option value="de" lang="de">Deutsch</option>
+        <option value="pt" lang="pt">Português</option>
       </select>
     </label>
   </header>
-  <section class="guide" aria-labelledby="guide-title">
-    <div class="guide-head"><h2 id="guide-title" data-copy="guideTitle"></h2><p data-copy="guideLead"></p></div>
-    <div class="steps">
-      <article class="step"><b data-number="1" data-copy="step1Title"></b><p data-copy="step1"></p></article>
-      <article class="step"><b data-number="2" data-copy="step2Title"></b><p data-copy="step2"></p></article>
-      <article class="step"><b data-number="3" data-copy="step3Title"></b><p data-copy="step3"></p></article>
-    </div>
-    <div class="example">
-      <div class="path-illustration" aria-hidden="true"><span class="mark">1</span><i></i><span class="mark">2</span><i></i><span class="mark">3</span><i></i><span>4</span><i class="live"></i><span>5</span></div>
-      <div><strong data-copy="exampleTitle"></strong><p data-copy="example"></p></div>
-    </div>
-  </section>
   <div class="settings">
     <label><span data-copy="tree"></span>
       <select id="tree">
@@ -160,36 +149,41 @@
     </label>
     <label><span data-copy="starter"></span>
       <select id="start">
-        <option value="D">D</option>
-        <option value="S">S</option>
+        <option value="D">Dominator (D)</option>
+        <option value="S">Staller (S)</option>
       </select>
     </label>
   </div>
   <div class="workspace">
-    <section class="panel board-panel" aria-label="棋盘" id="board-panel">
-      <div class="board-heading"><h2 data-copy="boardTitle"></h2><p data-copy="boardHint"></p></div>
-      <output id="status" class="status" role="status" aria-atomic="true"></output>
-      <svg id="board" viewBox="0 0 640 320" role="group" aria-label="树"></svg>
+    <section class="panel board-panel" id="board-panel">
+      <div class="board-heading"><h2 data-copy="boardTitle"></h2><p id="board-hint"></p></div>
+      <div class="turnbar">
+        <output id="status" class="status" role="status" aria-atomic="true"></output>
+        <output id="edge-count" class="edge-count"></output>
+      </div>
+      <div class="lesson">
+        <p id="lesson-text" role="status" aria-atomic="true"></p>
+        <button id="learn" type="button"></button>
+      </div>
+      <svg id="board" viewBox="0 0 640 320" role="group"></svg>
       <div class="legend">
         <span><i class="key key-live" aria-hidden="true"></i><span data-copy="openEdge"></span></span>
         <span><i class="key key-covered" aria-hidden="true"></i><span data-copy="coveredVertex"></span></span>
         <span><i class="key key-best" aria-hidden="true"></i><span data-copy="optimalRing"></span></span>
       </div>
+      <p id="impact" class="impact" aria-live="polite"></p>
       <div class="actions">
         <button id="optimal" data-copy="playBest"></button>
         <button id="undo" data-copy="undo"></button>
         <button id="reset" data-copy="restart"></button>
       </div>
-      <div class="history-block">
-        <h2 data-copy="history"></h2><p id="history"></p>
-      </div>
-      <details>
-        <summary data-copy="rulesTitle"></summary>
-        <p data-copy="rule"></p><p data-copy="goal"></p>
-      </details>
+      <section class="legal">
+        <h2 data-copy="legalMoves"></h2>
+        <p id="move-help" class="subtle" data-copy="moveHelp"></p>
+        <div id="moves" class="moves" aria-describedby="move-help"></div>
+      </section>
     </section>
     <aside class="panel aside" id="analysis">
-      <h2 data-copy="analysisTitle"></h2><p data-copy="analysisIntro"></p>
       <section>
         <h2 data-copy="openingValues"></h2>
         <div class="opening-values">
@@ -199,18 +193,25 @@
       </section>
       <section>
         <h2 data-copy="optimalLine"></h2>
-        <p data-copy="lineHelp"></p>
+        <p class="subtle" data-copy="lineHelp"></p>
         <ol id="line" class="sequence"></ol>
         <p id="no-line" hidden data-copy="noLine"></p>
       </section>
-      <section>
-        <h2 data-copy="legalMoves"></h2>
-        <p id="move-help" data-copy="moveHelp"></p>
-        <div id="moves" class="moves" aria-describedby="move-help"></div>
+      <section class="history-block">
+        <h2 data-copy="history"></h2><p id="history" class="subtle"></p>
       </section>
     </aside>
   </div>
-  <nav class="project-nav"><a id="construction-link" href="d10.html" data-copy="constructionLink"></a><a href="../" data-copy="homeLink"></a></nav>
+  <details class="panel rules">
+    <summary data-copy="rulesTitle"></summary>
+    <div class="steps">
+      <article class="step"><b data-copy="step1Title"></b><p data-copy="step1"></p></article>
+      <article class="step"><b data-copy="step2Title"></b><p data-copy="step2"></p></article>
+      <article class="step"><b data-copy="step3Title"></b><p data-copy="step3"></p></article>
+    </div>
+    <div class="example"><strong data-copy="exampleTitle"></strong><p data-copy="example"></p></div>
+  </details>
+  <nav class="project-nav"><a id="construction-link" href="d10.html" data-copy="constructionLink"></a><a id="home-link" href="../" data-copy="homeLink"></a></nav>
 </main>
 <script>
   const translations = {
@@ -280,14 +281,87 @@
   translations["pt"].turn = (player, count) => "Vez de " + player + " · restam " + count + " jogadas sob jogo ótimo";
   translations["pt"].end = count => "Fim da partida · " + count + " jogadas";
   translations["pt"].vertex = (number, optimal) => "Vértice " + number + (optimal ? ", jogada ótima" : "");
+  const interfaceCopy = {
+    zh: {
+      start: "试试两步示例", restart: "再做一遍", play: v => "走第 " + v + " 点",
+      prompt: ["第一次玩？用五点路径看懂规则。", "先选 2，看看哪些点被覆盖。",
+        "试试已覆盖的 3。它能新覆盖第 4 点，消掉最后一条橙边。", "两手结束。第 3 点虽然已覆盖，仍然是合法的一手。",
+        "你走了另一条路线。可以继续玩，或重做示例。"],
+      edges: n => "剩余橙边 " + n, hint: "点棋盘，或用下方按钮",
+      impact: (v, vertices, count) => "选了 " + v + " · 新覆盖 " + vertices + " · 橙边减少 " + count + " 条",
+    },
+    en: {
+      start: "Try the two-move example", restart: "Replay example", play: v => "Play vertex " + v,
+      prompt: ["New to the game? Try the five-vertex path.", "Start at vertex 2 and see what gets covered.",
+        "Now try the covered vertex 3. It can reach the last orange edge.", "Two moves. The covered vertex 3 was still a legal move.",
+        "You took a different line. Keep playing or replay the example."],
+      edges: n => "Orange edges left: " + n, hint: "Tap the board or use the buttons below",
+      impact: (v, vertices, count) => "Played " + v + " · Newly covered: " + vertices + " · Orange edges cleared: " + count,
+    },
+    ja: {
+      start: "2手の例を試す", restart: "例をやり直す", play: v => "頂点 " + v + " を選ぶ",
+      prompt: ["初めてなら5頂点のパスで試しましょう。", "まず頂点2を選び、どの頂点が覆われるか見てみましょう。",
+        "次は覆われている頂点3です。最後のオレンジ色の辺に届きます。", "2手で終了。覆われていた頂点3も選べました。",
+        "別の手を選びました。そのまま続けるか、例をやり直せます。"],
+      edges: n => "残りのオレンジ色の辺: " + n, hint: "盤面または下のボタンで頂点を選ぶ",
+      impact: (v, vertices, count) => "選択: " + v + " · 新たに覆った頂点: " + vertices + " · 消えたオレンジ色の辺: " + count,
+    },
+    es: {
+      start: "Probar el ejemplo de dos jugadas", restart: "Repetir ejemplo", play: v => "Jugar el vértice " + v,
+      prompt: ["Si es tu primera partida, prueba el camino de cinco vértices.", "Empieza en el vértice 2 y observa cuáles se cubren.",
+        "Prueba ahora el vértice 3, que ya está cubierto. Alcanza la última arista naranja.", "Fin en dos jugadas. El vértice 3 ya estaba cubierto y se podía jugar.",
+        "Has elegido otra jugada. Puedes seguir o repetir el ejemplo."],
+      edges: n => "Aristas naranjas restantes: " + n, hint: "Toca el tablero o usa los botones de abajo",
+      impact: (v, vertices, count) => "Jugaste " + v + " · Nuevos vértices cubiertos: " + vertices + " · Aristas naranjas eliminadas: " + count,
+    },
+    fr: {
+      start: "Essayer l’exemple en deux coups", restart: "Rejouer l’exemple", play: v => "Jouer le sommet " + v,
+      prompt: ["Pour commencer, essayez le chemin à cinq sommets.", "Jouez le sommet 2 et observez les sommets couverts.",
+        "Jouez ensuite le sommet 3, déjà couvert. Il atteint la dernière arête orange.", "Deux coups suffisent. Le sommet 3, déjà couvert, était jouable.",
+        "Vous avez joué un autre coup. Continuez ou rejouez l’exemple."],
+      edges: n => "Arêtes orange restantes : " + n, hint: "Touchez le plateau ou utilisez les boutons ci-dessous",
+      impact: (v, vertices, count) => "Sommet joué : " + v + " · Sommets nouvellement couverts : " + vertices + " · Arêtes orange retirées : " + count,
+    },
+    de: {
+      start: "Beispiel in zwei Zügen", restart: "Beispiel wiederholen", play: v => "Knoten " + v + " spielen",
+      prompt: ["Zum Einstieg eignet sich der Pfad mit fünf Knoten.", "Beginne mit Knoten 2 und sieh, welche Knoten abgedeckt werden.",
+        "Spiele jetzt den abgedeckten Knoten 3. Er erreicht die letzte orange Kante.", "Nach zwei Zügen ist Schluss. Der abgedeckte Knoten 3 war spielbar.",
+        "Du hast einen anderen Zug gewählt. Spiele weiter oder wiederhole das Beispiel."],
+      edges: n => "Verbleibende orange Kanten: " + n, hint: "Wähle einen Knoten im Spielfeld oder über die Schaltflächen unten",
+      impact: (v, vertices, count) => "Gespielt: " + v + " · Neu abgedeckt: " + vertices + " · Entfernte orange Kanten: " + count,
+    },
+    pt: {
+      start: "Experimentar duas jogadas", restart: "Repetir o exemplo", play: v => "Jogar o vértice " + v,
+      prompt: ["Se é a sua primeira partida, experimente o caminho de cinco vértices.", "Comece no vértice 2 e veja quais ficam cobertos.",
+        "Agora jogue o vértice 3, que já está coberto. Ele alcança a última aresta laranja.", "Fim em duas jogadas. O vértice 3 já estava coberto e pôde ser jogado.",
+        "Você escolheu outra jogada. Continue a partida ou repita o exemplo."],
+      edges: n => "Arestas laranjas restantes: " + n, hint: "Toque no tabuleiro ou use os botões abaixo",
+      impact: (v, vertices, count) => "Vértice jogado: " + v + " · Novos vértices cobertos: " + vertices + " · Arestas laranjas removidas: " + count,
+    },
+  };
+
+  function lessonStage() {
+    if (!guided) return 0;
+    if (!record.length) return 1;
+    if (record[0].index === 1 && record.length === 1) return 2;
+    if (record[0].index === 1 && record[1]?.index === 2 && record.length === 2) return 3;
+    return 4;
+  }
+
+  function openEdges(mask) {
+    return edges.filter(([a, b]) => (mask & ((1 << a) | (1 << b))) === 0).length;
+  }
+
   const el = id => document.getElementById(id);
   const copy = () => translations[el("language").value];
   const playerName = isStaller => isStaller ? "S" : "D";
   const label = i => n <= 9 ? i + 1 : i;
-  let n, edges, points, neighbors, memo, record, covered, staller;
+  let n, edges, points, neighbors, memo, record, covered, staller, guided;
 
-  function newGame() {
+  function newGame(showLesson = false) {
+    guided = showLesson === true;
     n = Number(el("tree").value);
+    el("board").setAttribute("viewBox", n <= 9 ? "0 88 640 144" : "0 0 640 320");
     edges = [];
     points = [];
     memo = new Map();
@@ -385,6 +459,12 @@
 
   function render() {
     const strings = copy();
+    const language = el("language").value;
+    const ui = interfaceCopy[language];
+    const stage = lessonStage();
+    const suggested = stage === 1 || stage === 2 ? stage : null;
+    const live = openEdges(covered);
+    const last = record.at(-1);
     const best = value(covered, staller);
     const choices = moveValues(covered, staller);
     el("d-value").textContent = value(0, false);
@@ -395,6 +475,16 @@
       : strings.noMoves;
     el("optimal").disabled = best === 0;
     el("undo").disabled = record.length === 0;
+    el("edge-count").textContent = ui.edges(live);
+    el("lesson-text").textContent = ui.prompt[stage];
+    el("learn").textContent = suggested === null ? (stage === 0 ? ui.start : ui.restart) : ui.play(label(suggested));
+    if (last) {
+      const changed = points.flatMap((_, i) => ((covered ^ last.covered) & (1 << i)) ? [label(i)] : []);
+      const separator = language === "zh" || language === "ja" ? "、" : ", ";
+      el("impact").textContent = ui.impact(label(last.index), changed.join(separator), openEdges(last.covered) - live);
+    } else {
+      el("impact").textContent = "";
+    }
 
     const lines = edges.map(([a, b]) => {
       const [x1, y1] = points[a];
@@ -403,10 +493,17 @@
       return '<line class="' + (open ? 'live' : '') + '" x1="' + x1 + '" y1="' + y1 +
         '" x2="' + x2 + '" y2="' + y2 + '"></line>';
     });
+    const played = new Set(record.map(move => move.index));
     const vertices = points.map(([x, y], i) => {
       const legal = choices[i] !== null;
       const optimal = choices[i] === best;
-      const classes = [covered & (1 << i) ? "covered" : "", optimal ? "best" : ""].join(" ");
+      const classes = [
+        covered & (1 << i) ? "covered" : "",
+        optimal ? "best" : "",
+        played.has(i) ? "chosen" : "",
+        last?.index === i ? "last" : "",
+        suggested === i ? "suggested" : ""
+      ].join(" ");
       return '<g role="button" data-i="' + i + '" aria-label="' + strings.vertex(label(i), optimal) +
         '" aria-disabled="' + !legal + '" tabindex="' + (legal ? 0 : -1) + '" class="' + classes +
         '"><circle cx="' + x + '" cy="' + y + '" r="14"></circle><text x="' + x + '" y="' + y +
@@ -452,6 +549,8 @@
     el("board").setAttribute("aria-label", strings.board);
     el("board-panel").setAttribute("aria-label", strings.boardPanel);
     el("analysis").setAttribute("aria-label", strings.analysis);
+    el("board-hint").textContent = interfaceCopy[el("language").value].hint;
+    el("home-link").href = "../?lang=" + encodeURIComponent(el("language").value);
   }
 
   el("board").addEventListener("click", choose);
@@ -461,6 +560,16 @@
     choose(event);
   });
   el("moves").addEventListener("click", choose);
+  el("learn").addEventListener("click", () => {
+    const stage = lessonStage();
+    if (stage === 1 || stage === 2) {
+      play(stage);
+      return;
+    }
+    el("tree").value = "5";
+    el("start").value = "D";
+    newGame(true);
+  });
   el("optimal").addEventListener("click", () => play(moveValues(covered, staller).indexOf(value(covered, staller))));
   el("undo").addEventListener("click", () => {
     const previous = record.pop();
