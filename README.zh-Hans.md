@@ -1,6 +1,6 @@
 # 树上的隔离博弈
 
-[English](README.md) · **简体中文** · [项目网站](https://prooflog553.github.io/isolation-game-on-trees-exhibit/)
+[English](README.md) · **简体中文** · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [项目网站](https://prooflog553.github.io/isolation-game-on-trees-exhibit/)
 
 **Dominator 先手时，上取整界对直径至多 9 的所有树成立。到了直径 10，一个无限反例族在两种先手下都超过这条界。**
 
@@ -36,3 +36,4 @@
 每手覆盖所选点和它的邻点，且须新覆盖一条原本两端都未覆盖的边的端点。Dominator 尽快结束，Staller 尽量拖长。在五点路径上先选 **2** 再选 **3**，即可验证已覆盖的顶点何时还能走。
 
 档案整理与维护由岑弈（Cen Yi）负责。[逐材料权利与许可](LICENSE_SCOPE.md)
+

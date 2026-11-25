@@ -1,6 +1,6 @@
 # Isolation Game on Trees
 
-**English** · [简体中文](README.zh-Hans.md) · [Project website](https://prooflog553.github.io/isolation-game-on-trees-exhibit/?lang=en)
+**English** · [简体中文](README.zh-Hans.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [Project website](https://prooflog553.github.io/isolation-game-on-trees-exhibit/?lang=en)
 
 **The rounded upper bound holds for Dominator-start play on every tree through diameter 9. An infinite family breaks it at diameter 10 for either starting player.**
 
@@ -36,3 +36,4 @@ Readers can check specific examples in Python and read the general proofs in the
 Each turn covers the chosen vertex and its neighbors. A move must newly cover an endpoint of an edge with two uncovered endpoints. Dominator wants to finish quickly, and Staller wants to prolong play. On the five-vertex path, choose **2** then **3** to see when an already covered vertex can still be played.
 
 Archive curation and maintenance by Cen Yi (岑弈). [Material-specific rights and notices](LICENSE_SCOPE.md)
+

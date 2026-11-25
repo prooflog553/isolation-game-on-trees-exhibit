@@ -1,0 +1,40 @@
+# Le jeu d’isolement sur les arbres
+
+[English](README.md) · [简体中文](README.zh-Hans.md) · [日本語](README.ja.md) · [Español](README.es.md) · **Français** · [Deutsch](README.de.md) · [Português](README.pt.md)
+
+![Seuil entre les diamètres 9 et 10](assets/diameter-threshold.svg)
+
+**Combien de coups peut durer une partie sur un arbre ?** Pour la borne considérée ici, le passage du diamètre 9 au diamètre 10 change la réponse.
+
+## Règles du jeu
+
+Deux joueurs choisissent à tour de rôle un sommet. Choisir un sommet marque ce sommet et tous ses voisins. Un coup est légal s’il marque pour la première fois au moins une extrémité d’une arête dont les deux extrémités étaient non marquées avant le coup. On peut donc choisir un sommet déjà marqué. Le jeu prend fin lorsqu’il ne reste aucune arête dont les deux extrémités sont non marquées. Dominator cherche à minimiser le nombre de coups, Staller à le maximiser.
+
+Sur le chemin 1–2–3–4–5, jouer 2 marque les sommets 1, 2 et 3. Jouer ensuite 3 est légal : le coup marque le sommet 4, une extrémité de la dernière arête dont les deux extrémités étaient encore non marquées, et termine la partie.
+
+## Résultats
+
+- **Diamètre au plus 9.** Dans le jeu ordinaire, si tous les sommets sont initialement non marqués et que Dominator commence, la valeur du jeu sur un arbre fini à $n$ sommets est au plus $\lceil 3n/7\rceil$. La même borne n’est pas établie lorsque Staller commence.
+- **Diamètre exactement 10.** Pour tout entier $k\ge1$, il existe un arbre de $210k$ sommets dont la valeur du jeu est au moins $91k$, quel que soit le premier joueur. La borne précédente vaudrait $\lceil 3(210k)/7\rceil=90k$. Cela ne donne ni une valeur exacte de $91k$, ni la minimalité du contre-exemple à 210 sommets.
+
+## Le tournant de la recherche : une seule feuille
+
+Relions les sommets centraux de trois chemins disjoints de sept sommets à un nouveau sommet central. L’arbre obtenu a 22 sommets et le jeu dure 9 coups en jeu optimal si Dominator commence. Ajouter une feuille au centre ne change pas le diamètre, qui reste égal à 8, mais porte le jeu à 10 coups pour 23 sommets. À cette taille, la borne arrondie à l’entier inférieur donne 9 et échoue, alors que l’entier supérieur vaut 10. Ce contre-exemple a motivé le changement de conjecture ; le calcul sur deux arbres ne prouve pas la nouvelle borne en général.
+
+## Des essais à la démonstration
+
+Sur le chemin à neuf sommets, commencer au centre conduit à quatre coups si les deux joueurs jouent au mieux, alors qu'une ouverture libre de Dominator permet de finir en trois. Cet exemple écarte une stratégie générale, sans réfuter la borne recherchée.
+
+La construction de diamètre 10 relie en étoile les centres de $14k$ modules de 15 sommets. La preuve finale contrôle d'abord la phase centrale, puis le jeu restant. Pour le diamètre 9, des certificats finis traitent les cas locaux et les stratégies de 14 familles couvrent un nombre arbitraire de branches ordinaires.
+
+La personne responsable a orienté la recherche et demandé des examens critiques ; les systèmes d'IA ont proposé et révisé constructions et arguments. Les calculs Python vérifient des exemples et des certificats finis ; Lean vérifie les énoncés formalisés. Les archives de la recherche comportent des lacunes.
+
+## Explorer et vérifier
+
+- [Article complet (PDF, anglais)](manuscript/Isolation_Game_Research_Report.pdf) · [Carte des preuves (anglais)](EVIDENCE_MAP.md)
+- [Histoire de la recherche (anglais)](RESEARCH.md) · [Guide de reproduction (anglais)](REPRODUCE.md) · [Sources et compilation Lean (anglais)](formal/README.md)
+- [Plateau interactif (anglais/chinois)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/index.html) · [Construction D10 (anglais/chinois)](https://prooflog553.github.io/isolation-game-on-trees-exhibit/demo/d10.html)
+- [Licences et mentions (anglais)](LICENSE_SCOPE.md)
+
+
+*Édition et maintenance de l’archive: Cen Yi (岑弈).*
